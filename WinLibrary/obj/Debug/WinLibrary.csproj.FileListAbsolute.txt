@@ -12,3 +12,5 @@ C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\o
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.csproj.GenerateResource.Cache
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.exe
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.pdb
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\Nager.AmazonProductAdvertising.dll
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\Nager.ArticleNumber.dll

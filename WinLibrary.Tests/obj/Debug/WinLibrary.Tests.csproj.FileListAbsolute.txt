@@ -5,3 +5,10 @@ C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.T
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\obj\Debug\WinLibrary.Tests.csprojResolveAssemblyReference.cache
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\obj\Debug\WinLibrary.Tests.dll
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\obj\Debug\WinLibrary.Tests.pdb
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\nunit.framework.dll
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\WinLibrary.exe
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\WinLibrary.pdb
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\nunit.framework.xml
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\WinLibrary.Tests.dll.config
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\Nager.AmazonProductAdvertising.dll
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary.Tests\bin\Debug\Nager.ArticleNumber.dll
