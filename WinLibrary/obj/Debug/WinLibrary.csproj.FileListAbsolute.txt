@@ -1,12 +1,9 @@
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\WinLibrary.exe.config
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\WinLibrary.exe
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\WinLibrary.pdb
-C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.csprojResolveAssemblyReference.cache
-C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\MainWindow.g.cs
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\App.g.cs
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary_MarkupCompile.cache
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary_MarkupCompile.lref
-C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\MainWindow.baml
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.g.resources
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.Properties.Resources.resources
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.csproj.GenerateResource.Cache
@@ -14,3 +11,8 @@ C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\o
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.pdb
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\Nager.AmazonProductAdvertising.dll
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\Nager.ArticleNumber.dll
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\MainWindows.g.cs
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\MainWindows.baml
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\Views\BookWindows.g.cs
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\Views\BookWindows.baml
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.csprojResolveAssemblyReference.cache

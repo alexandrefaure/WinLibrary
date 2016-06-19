@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\App.xaml
-11151548125
+226592376
 
-10787549172
+122065532020
 181209216389
-MainWindow.xaml;
+Views\BookWindows.xaml;MainWindows.xaml;
 
 False
 

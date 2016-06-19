@@ -1,4 +1,5 @@
-﻿using NUnit.Framework;
+﻿using Nager.AmazonProductAdvertising.Model;
+using NUnit.Framework;
 using WinLibrary.AmazonAPI;
 
 namespace WinLibrary.Tests.AmazonAPI
@@ -17,7 +18,7 @@ namespace WinLibrary.Tests.AmazonAPI
         [TestCase("")]
         public void GetIsbnInformation(string isbn)
         {
-            var informations = AmazonApi.GetInformation(isbn);
+            var informations = AmazonApi.GetBookInformation(isbn);
             if (isbn != string.Empty)
             {
                 Assert.IsNotNull(informations);
@@ -25,6 +26,45 @@ namespace WinLibrary.Tests.AmazonAPI
             else
             {
                 Assert.IsNull(informations);
+            }
+        }
+
+        [Test]
+        public void FillBookInformationTest()
+        {
+            var item = new Item
+            {
+                ItemAttributes = new ItemAttributes
+                {
+                    Title = "TestBookTitle",
+                    Author = new []{"TestAuthor"},
+                    Edition = "TestEdition",
+                    ModelYear = "2003",
+                    NumberOfPages = "122"
+                }
+            };
+
+            var itemAttributes = item.ItemAttributes;
+            var book = AmazonApi.FillBookInformation(item);
+            Assert.AreEqual(itemAttributes.Title, book.Title);
+            Assert.AreEqual(itemAttributes.Author, book.Author);
+            Assert.AreEqual(itemAttributes.Edition, book.Editor);
+            Assert.AreEqual(itemAttributes.ModelYear, book.Year);
+            Assert.AreEqual(itemAttributes.NumberOfPages, book.Pages);
+        }
+
+        [TestCase("9782100738748")] //SCRUM Le guide de la méthode agile la plus populaire
+        [TestCase("")]
+        public void GetBook(string isbn)
+        {
+            var book = AmazonApi.GetBook(isbn);
+            if (isbn != string.Empty)
+            {
+                Assert.IsNotNull(book);
+            }
+            else
+            {
+                Assert.IsNull(book);
             }
         }
     }
