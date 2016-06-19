@@ -10,7 +10,7 @@
         <TextBox x:Name="TitleBox" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" Text="Titre" VerticalAlignment="Top" Width="180"/>
         <TextBox x:Name="AuthorBox" HorizontalAlignment="Left" Height="17" Margin="82,37,0,0" TextWrapping="Wrap" Text="Auteur" VerticalAlignment="Top" Width="138"/>
         <TextBox x:Name="YearBox" HorizontalAlignment="Left" Height="17" Margin="82,59,0,0" TextWrapping="Wrap" Text="Année" VerticalAlignment="Top" Width="138"/>
-        <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" Margin="129,243,0,0" VerticalAlignment="Top" Width="76"/>
+        <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" Margin="129,243,0,0" VerticalAlignment="Top" Width="76" Click="SaveButton_Click"/>
         <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" Margin="210,243,0,0" VerticalAlignment="Top" Width="76" Click="CloseButton_Click"/>
 
     </Grid>

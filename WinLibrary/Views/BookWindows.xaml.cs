@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WinLibrary.Model;
 
 namespace WinLibrary
 {
@@ -19,6 +20,7 @@ namespace WinLibrary
     /// </summary>
     public partial class BookWindows : Window
     {
+        private BookContext _context = new BookContext();
         public BookWindows()
         {
             InitializeComponent();
@@ -27,6 +29,11 @@ namespace WinLibrary
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+          
         }
     }
 }

@@ -16,3 +16,7 @@ C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\o
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\Views\BookWindows.g.cs
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\Views\BookWindows.baml
 C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\obj\Debug\WinLibrary.csprojResolveAssemblyReference.cache
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\EntityFramework.dll
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\EntityFramework.xml
+C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\bin\Debug\EntityFramework.SqlServer.xml

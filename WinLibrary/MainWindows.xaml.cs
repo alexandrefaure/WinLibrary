@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WinLibrary.Model;
 
 namespace WinLibrary
 {
@@ -19,11 +20,20 @@ namespace WinLibrary
     /// </summary>
     public partial class MainWindows : Window
     {
+        private BookContext _context = new BookContext();
         public MainWindows()
         {
             InitializeComponent();
+            //InitializeDatabase();
         }
 
+        public void InitializeDatabase()
+        {
+            var db = new BookContext();
+            var testbook = new Book { Title = "TestBook" };
+            db.Books.Add(testbook);
+            db.SaveChanges();
+        }
         private void AddBook(object sender, RoutedEventArgs e)
         {
            var wnd = new BookWindows();
