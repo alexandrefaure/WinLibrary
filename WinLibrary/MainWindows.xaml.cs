@@ -26,9 +26,14 @@ namespace WinLibrary
         }
         private void AddBook(object sender, RoutedEventArgs e)
         {
-           var wnd = new BookWindows();
+            var wnd = new Views.BookWindows();
             //wnd.Show(); //Separate thread
             wnd.ShowDialog(); //Same thread
+        }
+
+        private void QuitProgram(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }

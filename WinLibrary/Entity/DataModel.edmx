@@ -12,6 +12,9 @@
           <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Author" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="Editor" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="PublishedYear" Type="nvarchar" MaxLength="2147483647" />
+          <Property Name="PagesNumber" Type="integer" />
         </EntityType>
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" store:Type="Tables" />
@@ -30,6 +33,9 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Editor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="PublishedYear" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="PagesNumber" Type="Int64" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -40,6 +46,9 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DatabaseModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="PagesNumber" ColumnName="PagesNumber" />
+                <ScalarProperty Name="PublishedYear" ColumnName="PublishedYear" />
+                <ScalarProperty Name="Editor" ColumnName="Editor" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

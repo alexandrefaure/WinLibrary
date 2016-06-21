@@ -7,6 +7,9 @@
         Title="WinLibrary" Height="300" Width="300" WindowStyle="SingleBorderWindow" WindowState="Maximized">
     <Grid>
         <Menu x:Name="menu" Height="19" VerticalAlignment="Top">
+            <MenuItem Header="_Fichier" FontSize="12">
+                <MenuItem Header="_Quitter" Click="QuitProgram"/>
+            </MenuItem>
             <MenuItem Header="_Livres" FontSize="12">
                 <MenuItem Header="_Ajouter" Click="AddBook"/>
             </MenuItem>

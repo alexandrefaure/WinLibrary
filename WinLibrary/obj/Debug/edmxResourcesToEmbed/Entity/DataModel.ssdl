@@ -7,6 +7,9 @@
     <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="2147483647" />
     <Property Name="Author" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="Editor" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="PublishedYear" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="PagesNumber" Type="integer" />
   </EntityType>
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="Book" EntityType="Self.Book" store:Type="Tables" />
