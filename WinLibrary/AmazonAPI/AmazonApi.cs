@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Nager.AmazonProductAdvertising;
 using Nager.AmazonProductAdvertising.Model;
-using WinLibrary.Model;
+using WinLibrary.Entity;
 
 namespace WinLibrary.AmazonAPI
 {
@@ -45,10 +45,10 @@ namespace WinLibrary.AmazonAPI
             var book = new Book
             {
                 Title = itemAttributes.Title,
-                Author = itemAttributes.Author,
-                Editor = itemAttributes.Edition,
-                Year = itemAttributes.ModelYear,
-                Pages = itemAttributes.NumberOfPages
+                //Author = itemAttributes.Author,
+                //Editor = itemAttributes.Edition,
+                //Year = itemAttributes.ModelYear,
+                //Pages = itemAttributes.NumberOfPages
             };
             return book;
         }

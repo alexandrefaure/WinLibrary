@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using WinLibrary.Model;
+using WinLibrary.Entity;
 
 namespace WinLibrary
 {
@@ -8,19 +8,21 @@ namespace WinLibrary
     /// </summary>
     public partial class MainWindows : Window
     {
-        private BookContext _context = new BookContext();
         public MainWindows()
         {
+            this.DataContext = this;
             InitializeComponent();
-            //InitializeDatabase();
+            InitializeDatabase();
         }
 
         public void InitializeDatabase()
         {
-            var db = new BookContext();
-            var testbook = new Book { Title = "TestBook" };
-            db.Books.Add(testbook);
-            db.SaveChanges();
+            using (Entity.DatabaseEntities db = new Entity.DatabaseEntities())
+            {
+                var testbook = new Book { Title = "TestBook" };
+                db.Books.Add(testbook);
+                db.SaveChanges();
+            }
         }
         private void AddBook(object sender, RoutedEventArgs e)
         {

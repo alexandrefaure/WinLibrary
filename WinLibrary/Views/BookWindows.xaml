@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:WinLibrary"
         mc:Ignorable="d"
         Title="Ajouter un livre" Height="300" Width="300">
-    <Grid>
-        <TextBox x:Name="TitleBox" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" Text="Titre" VerticalAlignment="Top" Width="180"/>
+    <Grid Name="SaveBookGrid">
+        <TextBox x:Name="TitleBox" Text="{Binding Path=BookTitle}" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
         <TextBox x:Name="AuthorBox" HorizontalAlignment="Left" Height="17" Margin="82,37,0,0" TextWrapping="Wrap" Text="Auteur" VerticalAlignment="Top" Width="138"/>
         <TextBox x:Name="YearBox" HorizontalAlignment="Left" Height="17" Margin="82,59,0,0" TextWrapping="Wrap" Text="Année" VerticalAlignment="Top" Width="138"/>
         <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" Margin="129,243,0,0" VerticalAlignment="Top" Width="76" Click="SaveButton_Click"/>
