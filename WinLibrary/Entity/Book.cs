@@ -14,7 +14,8 @@ namespace WinLibrary.Entity
     
     public partial class Book
     {
-        public long BookId { get; set; }
+        public long Id { get; set; }
         public string Title { get; set; }
+        public string Author { get; set; }
     }
 }

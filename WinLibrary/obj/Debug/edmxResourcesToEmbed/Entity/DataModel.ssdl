@@ -2,10 +2,11 @@
 <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\Database\Database.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="Book">
     <Key>
-      <PropertyRef Name="BookId" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="BookId" Type="integer" Nullable="false" />
+    <Property Name="Id" Type="integer" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Title" Type="nvarchar" MaxLength="2147483647" />
+    <Property Name="Author" Type="nvarchar" MaxLength="2147483647" />
   </EntityType>
   <EntityContainer Name="DatabaseModelStoreContainer">
     <EntitySet Name="Book" EntityType="Self.Book" store:Type="Tables" />

@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using WinLibrary.Entity;
 
 namespace WinLibrary
@@ -21,7 +22,7 @@ namespace WinLibrary
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            using (Entity.DatabaseEntities db = new Entity.DatabaseEntities())
+            using (var db = new Entity.DatabaseEntities())
             {
                 var testbook = new Book
                 {
