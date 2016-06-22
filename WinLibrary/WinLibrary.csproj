@@ -110,6 +110,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DAL\BookDAL.cs" />
     <Compile Include="Entity\Book.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>

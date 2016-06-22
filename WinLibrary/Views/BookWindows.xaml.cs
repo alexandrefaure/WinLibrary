@@ -1,5 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Windows;
+using WinLibrary.DAL;
 using WinLibrary.Entity;
 
 namespace WinLibrary.Views
@@ -9,10 +11,12 @@ namespace WinLibrary.Views
     /// </summary>
     public partial class BookWindows : Window
     {
+        public string TitleToShowBeforeFocus = "toto";
         public BookWindows()
         {
             InitializeComponent();
-            SaveBookGrid.DataContext = this;
+            // Binding sur la VueModele
+            this.SaveBookGrid.DataContext = new BookViewModel();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -22,22 +26,34 @@ namespace WinLibrary.Views
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new DatabaseEntities())
+            var bookToSave = new Book
             {
-                var testbook = new Book
-                {
-                    Title = TitleBox.Text,
-                    Author = AuthorBox.Text,
-                    Editor = EditorBox.Text,
-                    PublishedYear = YearBox.Text,
-                    PagesNumber = int.Parse(PagesNumberBox.Text)
-                };
-                db.Books.Add(testbook);
-                db.SaveChanges();
-            }
+                Title = TitleBox.Text,
+                Author = AuthorBox.Text,
+                Editor = EditorBox.Text,
+                PublishedYear = YearBox.Text,
+                PagesNumber = FromStringToInt(PagesNumberBox.Text)
+            };
+            BookDAL.SaveBook(bookToSave);
             this.Close();
         }
 
+        private int FromStringToInt(string inputString)
+        {
+            int result;
+            var intParse = int.TryParse(inputString, out result);
+            if (!intParse)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("Le nombre de pages doit être un nombre");
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    Application.Current.Shutdown();
+                }
+            }
+            return result;
+        }
+
+        #region TextBoxEvent region
         private void TitleBox_OnGotFocus(object sender, RoutedEventArgs e)
         {
             TitleBox.Text = String.Empty;
@@ -63,29 +79,44 @@ namespace WinLibrary.Views
             PagesNumberBox.Text = String.Empty;
         }
 
-        private void TitleBox_OnLostFocus(object sender, RoutedEventArgs e)
+        //private void TitleBox_OnLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void AuthorBox_OnLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void EditorBox_OnLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void YearBox_OnLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //private void PagesNumberBox_OnLostFocus(object sender, RoutedEventArgs e)
+        //{
+        //    throw new NotImplementedException();
+        //}
+        #endregion TextBoxEvent region
+    }
+
+    public class BookViewModel : INotifyPropertyChanged
+    {
+
+        public string _bookTitle = "Entrez un titre";
+
+        public string BookTitle
         {
-            throw new NotImplementedException();
+            get { return _bookTitle; }
+            set { _bookTitle = value; }
         }
 
-        private void AuthorBox_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void EditorBox_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void YearBox_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
-
-        private void PagesNumberBox_OnLostFocus(object sender, RoutedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
