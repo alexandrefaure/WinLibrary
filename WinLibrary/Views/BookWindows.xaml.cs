@@ -10,12 +10,17 @@ namespace WinLibrary.Views
     /// </summary>
     public partial class BookWindows : Window
     {
-        public string TitleToShowBeforeFocus = "toto";
+        private string _titleToShowBeforeFocus = "titi";
+        public string TitleToShowBeforeFocus
+        {
+            get { return _titleToShowBeforeFocus; }
+            set { _titleToShowBeforeFocus = value; }
+        }
         public BookWindows()
         {
             InitializeComponent();
             // Binding sur la VueModele
-            this.SaveBookGrid.DataContext = new BookViewModel();
+            this.SaveBookGrid.DataContext = this;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -33,7 +38,7 @@ namespace WinLibrary.Views
                 PublishedYear = YearBox.Text,
                 PagesNumber = FromStringToInt(PagesNumberBox.Text)
             };
-            //BookDAL.SaveBook(bookToSave);
+            BookDAL.SaveBook(bookToSave);
             this.Close();
         }
 
@@ -55,7 +60,7 @@ namespace WinLibrary.Views
         #region TextBoxEvent region
         private void TitleBox_OnGotFocus(object sender, RoutedEventArgs e)
         {
-            TitleBox.Text = String.Empty;
+            TitleToShowBeforeFocus = String.Empty;
         }
 
         private void AuthorBox_OnGotFocus(object sender, RoutedEventArgs e)

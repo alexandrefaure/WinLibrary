@@ -1,8 +1,6 @@
 ﻿using System.Linq;
 using System.Windows;
-using WinLibrary.DAL;
 using WinLibrary.Entity;
-using WinLibrary.Views;
 
 namespace WinLibrary
 {
@@ -11,32 +9,27 @@ namespace WinLibrary
     /// </summary>
     public partial class MainWindows : Window
     {
-        //private static BookViewModel context;
-        //public static DatabaseEntities _database;
+        public static DatabaseEntities _database;
         public MainWindows()
         {
             InitializeComponent();
-            //this.BooksGrid.DataContext = this;
             InitializeDatabase();
             FillBooksGrid();
         }
 
         public void InitializeDatabase()
         {
-            //using (var database = new DatabaseEntities())
-            //{
-                var testbook = new Book { Title = "TestBook" };
-                BookDAL.SaveBook(testbook);
-            //}
-            //var _database = new DatabaseEntities();
-            //var testbook = new Book { Title = "TestBook" };
-            //BookDAL.SaveBook(new DatabaseEntities(), testbook);
+            _database = new DatabaseEntities();
+            var testbook = new Book {Title = "TestBook"};
+            _database.Books.Add(testbook);
+            _database.SaveChanges();
         }
         private void AddBook(object sender, RoutedEventArgs e)
         {
             var wnd = new Views.BookWindows();
             //wnd.Show(); //Separate thread
             wnd.ShowDialog(); //Same thread
+            RefreshBooksDataGrid();
         }
 
         private void QuitProgram(object sender, RoutedEventArgs e)
@@ -44,13 +37,14 @@ namespace WinLibrary
             Application.Current.Shutdown();
         }
 
-        private void FillBooksGrid()
+        private void RefreshBooksDataGrid()
         {
-            using (var database = new DatabaseEntities())
-            {
-                //var source = context.LoadAllBooks();
-                BooksGrid.ItemsSource = database.Books.ToList();
-            }
+            BooksGrid.ItemsSource = _database.Books.ToList();
+        }
+
+        public void FillBooksGrid()
+        {
+            BooksGrid.ItemsSource = _database.Books.ToList();
         }
     }
 }
