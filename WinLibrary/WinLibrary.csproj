@@ -129,6 +129,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Views\BookViewModel.cs" />
     <Compile Include="Views\BookWindows.xaml.cs">
       <DependentUpon>BookWindows.xaml</DependentUpon>
     </Compile>

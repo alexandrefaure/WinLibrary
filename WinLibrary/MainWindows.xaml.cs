@@ -1,5 +1,8 @@
-﻿using System.Windows;
+﻿using System.Linq;
+using System.Windows;
+using WinLibrary.DAL;
 using WinLibrary.Entity;
+using WinLibrary.Views;
 
 namespace WinLibrary
 {
@@ -8,21 +11,26 @@ namespace WinLibrary
     /// </summary>
     public partial class MainWindows : Window
     {
+        //private static BookViewModel context;
+        //public static DatabaseEntities _database;
         public MainWindows()
         {
-            this.DataContext = this;
             InitializeComponent();
+            //this.BooksGrid.DataContext = this;
             InitializeDatabase();
+            FillBooksGrid();
         }
 
         public void InitializeDatabase()
         {
-            using (Entity.DatabaseEntities db = new Entity.DatabaseEntities())
-            {
+            //using (var database = new DatabaseEntities())
+            //{
                 var testbook = new Book { Title = "TestBook" };
-                db.Books.Add(testbook);
-                db.SaveChanges();
-            }
+                BookDAL.SaveBook(testbook);
+            //}
+            //var _database = new DatabaseEntities();
+            //var testbook = new Book { Title = "TestBook" };
+            //BookDAL.SaveBook(new DatabaseEntities(), testbook);
         }
         private void AddBook(object sender, RoutedEventArgs e)
         {
@@ -34,6 +42,15 @@ namespace WinLibrary
         private void QuitProgram(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void FillBooksGrid()
+        {
+            using (var database = new DatabaseEntities())
+            {
+                //var source = context.LoadAllBooks();
+                BooksGrid.ItemsSource = database.Books.ToList();
+            }
         }
     }
 }

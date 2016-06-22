@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Windows;
 using WinLibrary.DAL;
 using WinLibrary.Entity;
@@ -34,7 +33,7 @@ namespace WinLibrary.Views
                 PublishedYear = YearBox.Text,
                 PagesNumber = FromStringToInt(PagesNumberBox.Text)
             };
-            BookDAL.SaveBook(bookToSave);
+            //BookDAL.SaveBook(bookToSave);
             this.Close();
         }
 
@@ -78,45 +77,6 @@ namespace WinLibrary.Views
         {
             PagesNumberBox.Text = String.Empty;
         }
-
-        //private void TitleBox_OnLostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void AuthorBox_OnLostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void EditorBox_OnLostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void YearBox_OnLostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-        //private void PagesNumberBox_OnLostFocus(object sender, RoutedEventArgs e)
-        //{
-        //    throw new NotImplementedException();
-        //}
         #endregion TextBoxEvent region
-    }
-
-    public class BookViewModel : INotifyPropertyChanged
-    {
-
-        public string _bookTitle = "Entrez un titre";
-
-        public string BookTitle
-        {
-            get { return _bookTitle; }
-            set { _bookTitle = value; }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

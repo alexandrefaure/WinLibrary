@@ -4,9 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="WinLibrary" Height="300" Width="300" WindowStyle="SingleBorderWindow" WindowState="Maximized">
+        Title="WinLibrary" Height="787.5" Width="787.5" WindowStyle="SingleBorderWindow" WindowState="Maximized">
     <Grid>
-        <Menu x:Name="menu" Height="19" VerticalAlignment="Top">
+        <Menu x:Name="Menu" Height="19" VerticalAlignment="Top">
             <MenuItem Header="_Fichier" FontSize="12">
                 <MenuItem Header="_Quitter" Click="QuitProgram"/>
             </MenuItem>
@@ -14,5 +14,6 @@
                 <MenuItem Header="_Ajouter" Click="AddBook"/>
             </MenuItem>
         </Menu>
+        <DataGrid x:Name="BooksGrid" Margin="0,0,0.5,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286"/>
     </Grid>
 </Window>

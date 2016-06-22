@@ -1,4 +1,5 @@
-﻿using WinLibrary.Entity;
+﻿using System.Data.Entity;
+using WinLibrary.Entity;
 
 namespace WinLibrary.DAL
 {
@@ -6,10 +7,18 @@ namespace WinLibrary.DAL
     {
         public static void SaveBook(Book book)
         {
-            using (var db = new DatabaseEntities())
+            using (var databaseEntities = new DatabaseEntities())
             {
-                db.Books.Add(book);
-                db.SaveChanges();
+                databaseEntities.Books.Add(book);
+                databaseEntities.SaveChanges();
+            }
+        }
+
+        public static DbSet<Book> LoadAllBooks()
+        {
+            using (var databaseEntities = new DatabaseEntities())
+            {
+                return databaseEntities.Books;
             }
         }
     }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\Database\Database.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="_databaseModel.Store" Provider="System.Data.SQLite.EF6" ProviderManifestToken="data source=&quot;C:\Users\Alexandre\Documents\Visual Studio 2015\Projects\WinLibrary\WinLibrary\_database\_database.db&quot;" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Book">
           <Key>
             <PropertyRef Name="Id" />
@@ -16,15 +16,15 @@
           <Property Name="PublishedYear" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="PagesNumber" Type="integer" />
         </EntityType>
-        <EntityContainer Name="DatabaseModelStoreContainer">
+        <EntityContainer Name="_databaseModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Books" EntityType="DatabaseModel.Book" />
+      <Schema Namespace="_databaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="_databaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Books" EntityType="_databaseModel.Book" />
         </EntityContainer>
         <EntityType Name="Book">
           <Key>
@@ -42,9 +42,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="_databaseModelStoreContainer" CdmEntityContainer="_databaseEntities">
           <EntitySetMapping Name="Books">
-            <EntityTypeMapping TypeName="DatabaseModel.Book">
+            <EntityTypeMapping TypeName="_databaseModel.Book">
               <MappingFragment StoreEntitySet="Book">
                 <ScalarProperty Name="PagesNumber" ColumnName="PagesNumber" />
                 <ScalarProperty Name="PublishedYear" ColumnName="PublishedYear" />
