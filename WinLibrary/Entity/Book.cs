@@ -7,18 +7,42 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+
 namespace WinLibrary.Entity
 {
     using System;
-    using System.Collections.Generic;
-    
-    public partial class Book
+
+    public partial class Book : INotifyPropertyChanged
     {
+        private string _title;
         public long Id { get; set; }
-        public string Title { get; set; }
+
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                if (this._title != value)
+                {
+                    this._title = value;
+                    this.NotifyPropertyChanged("Name");
+                }
+            }
+        }
+
         public string Author { get; set; }
         public string Editor { get; set; }
         public string PublishedYear { get; set; }
         public Nullable<long> PagesNumber { get; set; }
+
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        public void NotifyPropertyChanged(string propName)
+        {
+            if (this.PropertyChanged != null)
+                this.PropertyChanged(this, new PropertyChangedEventArgs(propName));
+        }
     }
 }

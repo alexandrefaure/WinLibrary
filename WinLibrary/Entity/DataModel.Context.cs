@@ -16,7 +16,7 @@ namespace WinLibrary.Entity
     public partial class DatabaseEntities : DbContext
     {
         public DatabaseEntities()
-            : base("DatabaseEntities")
+            : base("name=DatabaseEntities")
         {
         }
     

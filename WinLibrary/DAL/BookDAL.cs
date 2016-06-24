@@ -1,4 +1,6 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
 using WinLibrary.Entity;
 
 namespace WinLibrary.DAL
@@ -14,12 +16,14 @@ namespace WinLibrary.DAL
             }
         }
 
-        public static DbSet<Book> LoadAllBooks()
+        public static List<Book> LoadAllBooks()
         {
+            List<Book> booksCollection;
             using (var databaseEntities = new DatabaseEntities())
             {
-                return databaseEntities.Books;
+                booksCollection = databaseEntities.Books.ToList();
             }
+            return booksCollection;
         }
     }
 }
