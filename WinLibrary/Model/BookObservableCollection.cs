@@ -6,12 +6,12 @@ namespace WinLibrary.Model
 {
     public class BookObservableCollection : ObservableCollection<Book>
     {
+        public ObservableCollection<Book> BooksCollection { get; set; }
+
         public BookObservableCollection(DbSet<Book> booksList)
         {
             BooksCollection = new ObservableCollection<Book>(booksList);
         }
-
-        public ObservableCollection<Book> BooksCollection { get; set; }
 
         public void Add(Book testBook)
         {

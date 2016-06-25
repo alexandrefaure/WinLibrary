@@ -47,7 +47,7 @@ namespace WinLibrary.Tests.AmazonAPI
             var itemAttributes = item.ItemAttributes;
             var book = AmazonApi.FillBookInformation(item);
             Assert.AreEqual(itemAttributes.Title, book.Title);
-            //Assert.AreEqual(itemAttributes.Author, book.Author);
+            //Assert.AreEqual(itemAttributes.BookToSaveAuthor, book.BookToSaveAuthor);
             //Assert.AreEqual(itemAttributes.Edition, book.Editor);
             //Assert.AreEqual(itemAttributes.ModelYear, book.Year);
             //Assert.AreEqual(itemAttributes.NumberOfPages, book.Pages);

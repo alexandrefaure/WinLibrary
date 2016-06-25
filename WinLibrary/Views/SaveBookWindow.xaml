@@ -6,7 +6,7 @@
         mc:Ignorable="d"
         Title="Ajouter un livre" Height="300" Width="300">
     <Grid Name="SaveBookGrid">
-        <TextBox x:Name="TitleBox" Text="{Binding Path=TitleToShowBeforeFocus}"  GotFocus="TitleBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+        <TextBox x:Name="TitleBox" GotFocus="TitleBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
         <TextBox x:Name="AuthorBox" Text="Auteur" GotFocus="AuthorBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
         <TextBox x:Name="EditorBox" Text="Editeur" GotFocus="EditorBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
         <TextBox x:Name="YearBox"  Text="Année" GotFocus="YearBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>

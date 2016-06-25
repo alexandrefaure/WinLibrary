@@ -14,6 +14,14 @@
                 <MenuItem Header="_Ajouter" Command="{Binding AddBookCommand}"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksGrid" ItemsSource="{Binding Path=_booksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0.5,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286"/>
+        <DataGrid x:Name="BooksGrid" ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0.5,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Titre" Binding="{Binding Path=Title}" />
+                <DataGridTextColumn Header="Auteur" Binding="{Binding Path=Author}" />
+                <DataGridTextColumn Header="Editeur" Binding="{Binding Path=Editor}" />
+                <DataGridTextColumn Header="Année" Binding="{Binding Path=PublishedYear}" />
+                <DataGridTextColumn Header="Pages" Binding="{Binding Path=PagesNumber}" />
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

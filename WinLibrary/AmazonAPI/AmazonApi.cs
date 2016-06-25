@@ -45,7 +45,7 @@ namespace WinLibrary.AmazonAPI
             var book = new Book
             {
                 Title = itemAttributes.Title,
-                //Author = itemAttributes.Author,
+                //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
                 //Editor = itemAttributes.Edition,
                 //Year = itemAttributes.ModelYear,
                 //Pages = itemAttributes.NumberOfPages

@@ -1,7 +1,6 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using WinLibrary.DAL;
-using WinLibrary.Entity;
+using WinLibrary.Model;
 
 namespace WinLibrary.Tests.DAL
 {

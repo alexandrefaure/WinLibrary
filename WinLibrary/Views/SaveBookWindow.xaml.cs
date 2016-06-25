@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using WinLibrary.Model;
+using WinLibrary.ViewModel;
 
 namespace WinLibrary.Views
 {
@@ -9,57 +9,62 @@ namespace WinLibrary.Views
     /// </summary>
     public partial class SaveBookWindow : Window
     {
-        //DatabaseEntities datacontext = new DatabaseEntities();
-        private string _titleToShowBeforeFocus = "titi";
-        public string TitleToShowBeforeFocus
-        {
-            get { return _titleToShowBeforeFocus; }
-            set { _titleToShowBeforeFocus = value; }
-        }
+        public BookViewModel BookViewModel = new BookViewModel();
+        public bool IsBookNeedToSave = false;
         public SaveBookWindow()
         {
             InitializeComponent();
-            // Binding sur la VueModele
-            this.SaveBookGrid.DataContext = this;
-            
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            IsBookNeedToSave = false;
             this.Close();
         }
 
+        private string _bookToSaveTitle;
+        public string BookToSaveTitle
+        {
+            get
+            {
+                _bookToSaveTitle = TitleBox.Text;
+                return _bookToSaveTitle;
+            }
+            set { _bookToSaveTitle = value; }
+        }
+
+        //public string BookToSaveAuthor { get; set; }
+
+        //public string BookToSaveEditor { get; set; }
+
+        //public string BookToSaveYear { get; set; }
+
+        //public string BookToSavePages { get; set; }
+
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            var bookToSave = new Book
-            {
-                Title = TitleBox.Text,
-                Author = AuthorBox.Text,
-                Editor = EditorBox.Text,
-                PublishedYear = YearBox.Text,
-                PagesNumber = FromStringToInt(PagesNumberBox.Text)
-            };
+            IsBookNeedToSave = true;
             this.Close();
         }
-        private int FromStringToInt(string inputString)
-        {
-            int result;
-            var intParse = int.TryParse(inputString, out result);
-            if (!intParse)
-            {
-                MessageBoxResult messageBoxResult = MessageBox.Show("Le nombre de pages doit être un nombre");
-                if (messageBoxResult == MessageBoxResult.Yes)
-                {
-                    Application.Current.Shutdown();
-                }
-            }
-            return result;
-        }
+        //private int FromStringToInt(string inputString)
+        //{
+        //    int result;
+        //    var intParse = int.TryParse(inputString, out result);
+        //    if (!intParse)
+        //    {
+        //        var messageBoxResult = MessageBox.Show("Le nombre de pages doit être un nombre");
+        //        if (messageBoxResult == MessageBoxResult.Yes)
+        //        {
+        //            Application.Current.Shutdown();
+        //        }
+        //    }
+        //    return result;
+        //}
 
         #region TextBoxEvent region
         private void TitleBox_OnGotFocus(object sender, RoutedEventArgs e)
         {
-            TitleToShowBeforeFocus = String.Empty;
+            //TitleToShowBeforeFocus = String.Empty;
         }
 
         private void AuthorBox_OnGotFocus(object sender, RoutedEventArgs e)

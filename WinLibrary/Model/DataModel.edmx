@@ -28,11 +28,11 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
-          <Property Name="Author" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Editor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="PublishedYear" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="PagesNumber" Type="Int64" />
+          <Property Name="Title" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Author" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Books" EntityType="Self.Book" />
@@ -46,9 +46,9 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DatabaseModel.Book">
               <MappingFragment StoreEntitySet="Book">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Editor" ColumnName="Editor" />
                 <ScalarProperty Name="PublishedYear" ColumnName="PublishedYear" />
                 <ScalarProperty Name="PagesNumber" ColumnName="PagesNumber" />

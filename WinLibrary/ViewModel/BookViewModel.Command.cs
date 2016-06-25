@@ -1,6 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using WinLibrary.Model;
+using WinLibrary.Views;
 
 namespace WinLibrary.ViewModel
 {
@@ -16,10 +16,17 @@ namespace WinLibrary.ViewModel
 
         public void AddBook()
         {
-            var messageBoxResult = MessageBox.Show("Vous vous apprétez à ajouter un livre");
-            var testBook = new Book {Title = "BookAddedMDR"};
+            var saveBookWindow = new SaveBookWindow();
+            saveBookWindow.ShowDialog();
 
-            BookObservableCollection.Add(testBook);
+            if (saveBookWindow.IsBookNeedToSave)
+            {
+                var testBook = new Book
+                {
+                    Title = saveBookWindow.BookToSaveTitle
+                };
+                BookObservableCollection.Add(testBook);
+            }
         }
     }
 }
