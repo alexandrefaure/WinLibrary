@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WinLibrary.Entity
+namespace WinLibrary.Model
 {
     using System;
     using System.Data.Entity;

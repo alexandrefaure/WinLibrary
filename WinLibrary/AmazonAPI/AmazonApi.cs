@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Nager.AmazonProductAdvertising;
 using Nager.AmazonProductAdvertising.Model;
-using WinLibrary.Entity;
+using WinLibrary.Model;
 
 namespace WinLibrary.AmazonAPI
 {

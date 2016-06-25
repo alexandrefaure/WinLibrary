@@ -19,7 +19,7 @@ namespace WinLibrary.Tests.DAL
                 PublishedYear = bookYear,
                 PagesNumber = bookPages
             };
-            BookDAL.SaveBook(testbook);
+            BookDal.SaveBook(testbook);
         }
     }
 }

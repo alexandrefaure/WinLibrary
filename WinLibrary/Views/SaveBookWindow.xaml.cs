@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Windows;
-using WinLibrary.Entity;
+using WinLibrary.Model;
 
 namespace WinLibrary.Views
 {

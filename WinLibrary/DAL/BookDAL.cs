@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
-using WinLibrary.Entity;
+using WinLibrary.Model;
 
 namespace WinLibrary.DAL
 {
-    public class BookDAL
+    public class BookDal
     {
         public static void SaveBook(Book book)
         {
