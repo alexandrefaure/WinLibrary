@@ -41,15 +41,19 @@ namespace WinLibrary.AmazonAPI
 
         public static Book FillBookInformation(Item item)
         {
-            var itemAttributes = item.ItemAttributes;
-            var book = new Book
+            Book book = null;
+            if (item != null)
             {
-                Title = itemAttributes.Title,
-                //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
-                //Editor = itemAttributes.Edition,
-                //Year = itemAttributes.ModelYear,
-                //Pages = itemAttributes.NumberOfPages
-            };
+                var itemAttributes = item.ItemAttributes;
+                book = new Book
+                {
+                    Title = itemAttributes.Title,
+                    //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
+                    //Editor = itemAttributes.Edition,
+                    //Year = itemAttributes.ModelYear,
+                    //Pages = itemAttributes.NumberOfPages
+                };
+            }
             return book;
         }
     }
