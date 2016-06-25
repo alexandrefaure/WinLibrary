@@ -27,5 +27,12 @@
                 <DataGridTextColumn Header="Pages" Binding="{Binding Path=PagesNumber}" />
             </DataGrid.Columns>
         </DataGrid>
+        <Canvas Name="BookDetail" HorizontalAlignment="Left" Height="357" Margin="10,24,0,0" VerticalAlignment="Top" Width="762">
+            <Border BorderThickness="2" BorderBrush="#FF000000">
+                <Image x:Name="selectedBookImage" Height="204" Canvas.Left="10" Canvas.Top="24" Width="157"/>
+            </Border>
+            <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="23" Canvas.Left="206" TextWrapping="Wrap" Canvas.Top="24" Width="120"/>
+            <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="23" Canvas.Left="206" TextWrapping="Wrap" Canvas.Top="72" Width="223"/>
+        </Canvas>
     </Grid>
 </Window>
