@@ -15,6 +15,7 @@
           <Property Name="Editor" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="PublishedYear" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="PagesNumber" Type="integer" />
+          <Property Name="Isbn" Type="integer" />
         </EntityType>
         <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="Book" EntityType="Self.Book" store:Type="Tables" />
@@ -33,6 +34,7 @@
           <Property Name="PagesNumber" Type="Int64" />
           <Property Name="Title" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
+          <Property Name="Isbn" Type="Int64" />
         </EntityType>
         <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Books" EntityType="Self.Book" />
@@ -46,6 +48,7 @@
           <EntitySetMapping Name="Books">
             <EntityTypeMapping TypeName="DatabaseModel.Book">
               <MappingFragment StoreEntitySet="Book">
+                <ScalarProperty Name="Isbn" ColumnName="Isbn" />
                 <ScalarProperty Name="Author" ColumnName="Author" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

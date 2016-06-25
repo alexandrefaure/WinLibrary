@@ -20,5 +20,6 @@ namespace WinLibrary.Model
         public Nullable<long> PagesNumber { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
+        public Nullable<long> Isbn { get; set; }
     }
 }
