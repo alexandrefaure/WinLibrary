@@ -24,5 +24,17 @@ namespace WinLibrary.DAL
             }
             return booksCollection;
         }
+
+        public static void Clear()
+        {
+            using (var databaseEntities = new DatabaseEntities())
+            {
+                foreach (var bookEntry in databaseEntities.Books)
+                {
+                    databaseEntities.Books.Remove(bookEntry);
+                }
+                databaseEntities.SaveChanges();
+            }
+        }
     }
 }
