@@ -23,7 +23,11 @@ namespace WinLibrary.ViewModel
             {
                 var testBook = new Book
                 {
-                    Title = saveBookWindow.BookToSaveTitle
+                    Title = saveBookWindow.BookToSaveTitle,
+                    Author = saveBookWindow.BookToSaveAuthor,
+                    Editor = saveBookWindow.BookToSaveEditor,
+                    PublishedYear = saveBookWindow.BookToSaveYear,
+                    PagesNumber = saveBookWindow.BookToSavePages
                 };
                 BookObservableCollection.Add(testBook);
             }

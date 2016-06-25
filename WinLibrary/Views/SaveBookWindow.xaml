@@ -6,11 +6,11 @@
         mc:Ignorable="d"
         Title="Ajouter un livre" Height="300" Width="300">
     <Grid Name="SaveBookGrid">
-        <TextBox x:Name="TitleBox" GotFocus="TitleBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
-        <TextBox x:Name="AuthorBox" Text="Auteur" GotFocus="AuthorBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="EditorBox" Text="Editeur" GotFocus="EditorBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="YearBox"  Text="Année" GotFocus="YearBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
-        <TextBox x:Name="PagesNumberBox"  Text="Nombre de pages" GotFocus="PagesNumberBox_OnGotFocus" HorizontalAlignment="Left" Height="17" Margin="82,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="TitleBox" Text="Titre" GotFocus="TitleBox_OnGotFocus" LostFocus="TitleBox_OnLostFocus" HorizontalAlignment="Left" Height="17" Margin="82,15,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="180"/>
+        <TextBox x:Name="AuthorBox" Text="Auteur" GotFocus="AuthorBox_OnGotFocus" LostFocus="AuthorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" Margin="82,37,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="EditorBox" Text="Editeur" GotFocus="EditorBox_OnGotFocus" LostFocus="EditorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" Margin="82,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="YearBox"  Text="Année" GotFocus="YearBox_OnGotFocus" LostFocus="YearBox_OnLostFocus" HorizontalAlignment="Left" Height="17" Margin="82,81,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
+        <TextBox x:Name="PagesNumberBox"  Text="Nombre de pages" GotFocus="PagesNumberBox_OnGotFocus" LostFocus="PagesNumberBox_OnLostFocus" HorizontalAlignment="Left" Height="17" Margin="82,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138"/>
         <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" Margin="129,243,0,0" VerticalAlignment="Top" Width="76" Click="SaveButton_Click"/>
         <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" Margin="210,243,0,0" VerticalAlignment="Top" Width="76" Click="CloseButton_Click"/>
     </Grid>
