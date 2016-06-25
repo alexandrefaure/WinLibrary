@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace WinLibrary
+namespace WinLibrary.ViewModel
 {
     public class CommandHandler : ICommand
     {
