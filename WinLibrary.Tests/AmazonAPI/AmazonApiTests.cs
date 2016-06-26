@@ -1,4 +1,5 @@
-﻿using Nager.AmazonProductAdvertising.Model;
+﻿using System.Linq;
+using Nager.AmazonProductAdvertising.Model;
 using NUnit.Framework;
 using WinLibrary.AmazonAPI;
 
@@ -39,18 +40,19 @@ namespace WinLibrary.Tests.AmazonAPI
                     Title = "TestBookTitle",
                     Author = new []{"TestAuthor"},
                     Edition = "TestEdition",
-                    ModelYear = "2003",
+                    PublicationDate = "2003",
                     NumberOfPages = "122"
                 }
             };
 
             var itemAttributes = item.ItemAttributes;
+            var authorList = itemAttributes.Author.ToList();
             var book = AmazonApi.FillBookInformation(item);
             Assert.AreEqual(itemAttributes.Title, book.Title);
-            //Assert.AreEqual(itemAttributes.BookToSaveAuthor, book.BookToSaveAuthor);
-            //Assert.AreEqual(itemAttributes.Edition, book.Editor);
-            //Assert.AreEqual(itemAttributes.ModelYear, book.Year);
-            //Assert.AreEqual(itemAttributes.NumberOfPages, book.Pages);
+            Assert.AreEqual(authorList.First(), book.Author);
+            Assert.AreEqual(itemAttributes.Edition, book.Editor);
+            Assert.AreEqual(itemAttributes.PublicationDate, book.PublishedYear);
+            Assert.AreEqual(itemAttributes.NumberOfPages, book.PagesNumber.ToString());
         }
 
         [TestCase("9782100738748")] //SCRUM Le guide de la méthode agile la plus populaire

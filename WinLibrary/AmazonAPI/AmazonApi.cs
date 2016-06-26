@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using Nager.AmazonProductAdvertising;
 using Nager.AmazonProductAdvertising.Model;
 using WinLibrary.Model;
@@ -45,9 +46,14 @@ namespace WinLibrary.AmazonAPI
             if (item != null)
             {
                 var itemAttributes = item.ItemAttributes;
+                var authorList = itemAttributes.Author.ToList();
                 book = new Book
                 {
                     Title = itemAttributes.Title,
+                    Author = authorList.First(),
+                    Editor = itemAttributes.Edition,
+                    PublishedYear = itemAttributes.PublicationDate,
+                    PagesNumber = Convert.ToInt64(itemAttributes.NumberOfPages)
                     //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
                     //Editor = itemAttributes.Edition,
                     //Year = itemAttributes.ModelYear,
