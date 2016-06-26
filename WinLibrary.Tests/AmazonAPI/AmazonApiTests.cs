@@ -39,9 +39,14 @@ namespace WinLibrary.Tests.AmazonAPI
                 {
                     Title = "TestBookTitle",
                     Author = new []{"TestAuthor"},
-                    Edition = "TestEdition",
+                    Label = "TestEdition",
                     PublicationDate = "2003",
-                    NumberOfPages = "122"
+                    NumberOfPages = "122",
+                    ISBN = "TESTISBN",
+                },
+                LargeImage = new Image
+                {
+                    URL = "MediumImageURL"
                 }
             };
 
@@ -50,9 +55,11 @@ namespace WinLibrary.Tests.AmazonAPI
             var book = AmazonApi.FillBookInformation(item);
             Assert.AreEqual(itemAttributes.Title, book.Title);
             Assert.AreEqual(authorList.First(), book.Author);
-            Assert.AreEqual(itemAttributes.Edition, book.Editor);
+            Assert.AreEqual(itemAttributes.Label, book.Editor);
             Assert.AreEqual(itemAttributes.PublicationDate, book.PublishedYear);
             Assert.AreEqual(itemAttributes.NumberOfPages, book.PagesNumber.ToString());
+            Assert.AreEqual(itemAttributes.ISBN, book.Isbn);
+            Assert.AreEqual(item.LargeImage.URL, book.CoverImage);
         }
 
         [TestCase("9782100738748")] //SCRUM Le guide de la méthode agile la plus populaire

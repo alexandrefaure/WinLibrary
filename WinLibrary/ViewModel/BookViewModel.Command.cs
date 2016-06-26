@@ -1,5 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
+using WinLibrary.AmazonAPI;
 using WinLibrary.Model;
 using WinLibrary.Views;
 
@@ -11,6 +15,7 @@ namespace WinLibrary.ViewModel
         private readonly bool _canExecute;
         private ICommand _purgeAllBooksCommand;
         private ICommand _loadDummyBooksCommand;
+        private ICommand _getBookFromAmazonCommand;
 
         public ICommand AddBookCommand
         {
@@ -27,36 +32,39 @@ namespace WinLibrary.ViewModel
             get { return _loadDummyBooksCommand ?? (_loadDummyBooksCommand = new CommandHandler(LoadDummyBooks, _canExecute)); }
         }
 
-        private void LoadDummyBooks()
+        public ICommand GetBookFromAmazonCommand
         {
-            var livre1 = new Book
-            {
-                Title = "Les misérables",
-                Author = "Victor Hugo",
-                Editor = "Flamarion",
-                PublishedYear = "1960",
-                PagesNumber = 120
-            };
-            var livre2 = new Book
-            {
-                Title = "Le rouge et le noir",
-                Author = "Stendhal",
-                Editor = "Grasset",
-                PublishedYear = "1780",
-                PagesNumber = 253
-            };
-            var livre3 = new Book
-            {
-                Title = "Avant le big bang",
-                Author = "Igor et Grichka Bogdanov",
-                Editor = "Dunod",
-                PublishedYear = "2005",
-                PagesNumber = 154
-            };
-            BookObservableCollection.AddRange(new List<Book> {livre1, livre2, livre3});
+            get { return _getBookFromAmazonCommand ?? (_getBookFromAmazonCommand = new CommandHandler(param => GetBookFromAmazon(param), _canExecute)); }
         }
 
-        public void AddBook()
+        private void LoadDummyBooks(object obj)
+        {
+            var livre1 = AmazonApi.GetBook("9782100738748");
+            var livre2 = AmazonApi.GetBook("9782754038652");
+            var livre3 = AmazonApi.GetBook("9782212558517");
+            var livre4 = AmazonApi.GetBook("9782749142555");
+            var livre5 = AmazonApi.GetBook("9782218977275");
+            var livre6 = AmazonApi.GetBook("9782742716555");
+            var livre7 = AmazonApi.GetBook("9782067197251");
+            var livre8 = AmazonApi.GetBook("9782960142907");
+            var livre9 = AmazonApi.GetBook("9782221066881");
+            var livre10 = AmazonApi.GetBook("9782749916347");
+            BookObservableCollection.AddRange(new List<Book>
+            {
+                livre1,
+                livre2,
+                livre3,
+                livre4,
+                livre5,
+                livre6,
+                livre7,
+                livre8,
+                livre9,
+                livre10
+            });
+        }
+
+        public void AddBook(object obj)
         {
             var saveBookWindow = new SaveBookWindow();
             saveBookWindow.ShowDialog();
@@ -69,15 +77,59 @@ namespace WinLibrary.ViewModel
                     Author = saveBookWindow.BookToSaveAuthor,
                     Editor = saveBookWindow.BookToSaveEditor,
                     PublishedYear = saveBookWindow.BookToSaveYear,
-                    PagesNumber = saveBookWindow.BookToSavePages
+                    PagesNumber = saveBookWindow.BookToSavePages,
+                    Isbn = saveBookWindow.IsbnBox.Text,
+                    CoverImage = saveBookWindow.BookToSaveCoverImageUrl
                 };
                 BookObservableCollection.Add(testBook);
             }
         }
 
-        public void PurgeAllDatabase()
+        public void PurgeAllDatabase(object obj)
         {
             BookObservableCollection.DeleteAllBooks();
+        }
+
+        private void GetBookFromAmazon(object param)
+        {
+            var canvas = (SaveBookWindow) param;
+            if (canvas.IsbnBox.Text != string.Empty)
+            {
+                var book = AmazonAPI.AmazonApi.GetBook(canvas.IsbnBox.Text);
+                canvas.TitleBox.Text = book.Title;
+                canvas.AuthorBox.Text = book.Author;
+                canvas.EditorBox.Text = book.Editor;
+                canvas.YearBox.Text = book.PublishedYear;
+                canvas.PagesNumberBox.Text = book.PagesNumber.ToString();
+
+                var bitmap = ReturnImageFromUrl(book.CoverImage);
+                canvas.CoverImage.Source = bitmap;
+                canvas.BookToSaveCoverImageUrl = book.CoverImage;
+            }
+        }
+
+        internal static BitmapImage ReturnImageFromUrl(string url)
+        {
+            BitmapImage bitmap = null;
+            if (!string.IsNullOrEmpty(url))
+            {
+                var fullFilePath = url;
+                bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
+            }
+            return bitmap;
+        }
+
+        public Image TestMethod()
+        {
+            return new Image();
+        }
+
+        public Book GetBook(string text)
+        {
+           return BookObservableCollection.Get(text);
         }
     }
 }

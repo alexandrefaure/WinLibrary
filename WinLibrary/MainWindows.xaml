@@ -18,21 +18,23 @@
                 <MenuItem Header="Effacer BDD" Command="{Binding PurgeAllBooksCommand}"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksGrid" ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0.5,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286" AutoGenerateColumns="False">
+        <DataGrid x:Name="BooksGrid" SelectedCellsChanged="BooksGrid_OnSelectedCellsChanged" ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0.5,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Titre" Binding="{Binding Path=Title}" />
                 <DataGridTextColumn Header="Auteur" Binding="{Binding Path=Author}" />
                 <DataGridTextColumn Header="Editeur" Binding="{Binding Path=Editor}" />
                 <DataGridTextColumn Header="Année" Binding="{Binding Path=PublishedYear}" />
                 <DataGridTextColumn Header="Pages" Binding="{Binding Path=PagesNumber}" />
+                <DataGridTextColumn Header="ISBN" Binding="{Binding Path=Isbn}" />
             </DataGrid.Columns>
         </DataGrid>
         <Canvas Name="BookDetail" HorizontalAlignment="Left" Height="357" Margin="10,24,0,0" VerticalAlignment="Top" Width="762">
             <Border BorderThickness="2" BorderBrush="#FF000000">
-                <Image x:Name="selectedBookImage" Height="204" Canvas.Left="10" Canvas.Top="24" Width="157"/>
+                <Image x:Name="selectedBookImage" Height="303" Canvas.Left="10" Canvas.Top="24" Width="238"/>
             </Border>
-            <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="23" Canvas.Left="206" TextWrapping="Wrap" Canvas.Top="24" Width="120"/>
-            <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="23" Canvas.Left="206" TextWrapping="Wrap" Canvas.Top="72" Width="223"/>
+            <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="22" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="22" Width="505"/>
+            <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="23" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="61" Width="223"/>
+            <TextBox x:Name="selectedIsbnBox" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}" Height="22" Canvas.Left="247" TextWrapping="Wrap" Canvas.Top="100" Width="223"/>
         </Canvas>
     </Grid>
 </Window>

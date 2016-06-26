@@ -4,21 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Ajouter un livre" Height="361.275" Width="428">
-    <Grid Name="SaveBookGrid">
+        Title="Ajouter un livre" Height="379.763" Width="852.75" Name="SaveBookWindowName">
+    <Canvas Name="MainCanvas" Margin="0,0,0,2.5" HorizontalAlignment="Left" Width="843" Height="350" VerticalAlignment="Bottom">
+        <TextBox x:Name="TitleBox" Text="Titre" GotFocus="TitleBox_OnGotFocus" LostFocus="TitleBox_OnLostFocus" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="596" Canvas.Left="237" Canvas.Top="102"/>
+        <TextBox x:Name="AuthorBox" Text="Auteur" GotFocus="AuthorBox_OnGotFocus" LostFocus="AuthorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="237" Canvas.Top="139"/>
+        <TextBox x:Name="EditorBox" Text="Editeur" GotFocus="EditorBox_OnGotFocus" LostFocus="EditorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="237" Canvas.Top="181"/>
+        <TextBox x:Name="YearBox"  Text="Année" GotFocus="YearBox_OnGotFocus" LostFocus="YearBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="504" Canvas.Top="139"/>
+        <TextBox x:Name="PagesNumberBox"  Text="Nombre de pages" GotFocus="PagesNumberBox_OnGotFocus" LostFocus="PagesNumberBox_OnLostFocus" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="504" Canvas.Top="181"/>
+        <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Click="SaveButton_Click" Canvas.Left="568" Canvas.Top="312" Height="28"/>
+        <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Click="CloseButton_Click" Canvas.Left="700" Canvas.Top="312" Height="28"/>
 
-
-        <Canvas HorizontalAlignment="Left" Height="334" VerticalAlignment="Top" Width="423">
-            <TextBox x:Name="TitleBox" Text="Titre" GotFocus="TitleBox_OnGotFocus" LostFocus="TitleBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="168" Canvas.Top="15"/>
-            <TextBox x:Name="AuthorBox" Text="Auteur" GotFocus="AuthorBox_OnGotFocus" LostFocus="AuthorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="168" Canvas.Top="37"/>
-            <TextBox x:Name="EditorBox" Text="Editeur" GotFocus="EditorBox_OnGotFocus" LostFocus="EditorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="168" Canvas.Top="59"/>
-            <TextBox x:Name="YearBox"  Text="Année" GotFocus="YearBox_OnGotFocus" LostFocus="YearBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="168" Canvas.Top="81"/>
-            <TextBox x:Name="PagesNumberBox"  Text="Nombre de pages" GotFocus="PagesNumberBox_OnGotFocus" LostFocus="PagesNumberBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Canvas.Left="168" Canvas.Top="103"/>
-            <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Click="SaveButton_Click" Canvas.Left="256" Canvas.Top="304"/>
-            <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="76" Click="CloseButton_Click" Canvas.Left="337" Canvas.Top="304"/>
-            <Border BorderThickness="2" BorderBrush="#FF000000" Canvas.Top="10" Canvas.Left="10">
-                <Image x:Name="image" Height="176" Canvas.Left="10" Canvas.Top="10" Width="134"/>
-            </Border>
-        </Canvas>
-    </Grid>
+        <TextBox x:Name="IsbnBox"  Text="ISBN" GotFocus="IsbnBox_OnGotFocus" LostFocus="IsbnBox_OnLostFocus" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Center"  Width="138" Canvas.Left="344" Canvas.Top="37"/>
+        <Button x:Name="GetBookFromAmazonButton" Content="Rechercher" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="121" Command="{Binding GetBookFromAmazonCommand}" CommandParameter="{Binding ElementName=SaveBookWindowName}" Canvas.Left="504" Canvas.Top="37" Height="20"/>
+        <TextBlock x:Name="MainTextBlock" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="10" FontSize="16"><Run Text="Saisissez l'ISBN du livre à ajouter puis"/><Run Text=" cliquez sur "/><Run Text="R"/><Run Text="echercher"/></TextBlock>
+        <TextBlock x:Name="TitleTextBlock" Text="Titre" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="86"/>
+        <TextBlock x:Name="AuthorTextBlock" Text="Auteur" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="123"/>
+        <TextBlock x:Name="EditorTextBlock" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="163" Width="44" Height="19"><Run Text="Editeur"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="YearTextBlock" Canvas.Left="504" TextWrapping="Wrap" Canvas.Top="123" Width="117" Height="19"><Run Text="Année de publication"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="PagesNumberTextBlock" Canvas.Left="504" TextWrapping="Wrap" Canvas.Top="163" Width="117" Height="19"><Run Text="Nombre de pages"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="StyleTextBlock" Canvas.Left="678" TextWrapping="Wrap" Canvas.Top="123" Width="116" Height="19" Text="Genre"/>
+        <Border BorderThickness="2" BorderBrush="#FF000000" Canvas.Top="96" Canvas.Left="10">
+            <Image x:Name="bookPreviumImage" Height="240" Canvas.Left="10" Width="186" Canvas.Top="95"/>
+        </Border>
+    </Canvas>
 </Window>

@@ -1,5 +1,7 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using WinLibrary.ViewModel;
 
 namespace WinLibrary.Views
@@ -14,6 +16,7 @@ namespace WinLibrary.Views
         private readonly string _editorBoxDefaultText = "Editeur";
         private readonly string _yearBoxDefaultText = "Année de parution";
         private readonly string _pagesNumberBoxDefaultText = "Nombre de pages";
+        private readonly string _isbnBoxDefaultText = "9782100738748";
 
         public BookViewModel BookViewModel = new BookViewModel();
         public bool IsBookNeedToSave = false;
@@ -21,6 +24,7 @@ namespace WinLibrary.Views
         {
             InitializeComponent();
             InitializeBoxFields();
+            this.DataContext = BookViewModel;
         }
 
         private void InitializeBoxFields()
@@ -30,6 +34,7 @@ namespace WinLibrary.Views
             EditorBox.Text = _editorBoxDefaultText;
             YearBox.Text = _yearBoxDefaultText;
             PagesNumberBox.Text = _pagesNumberBoxDefaultText;
+            IsbnBox.Text = _isbnBoxDefaultText;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -91,6 +96,38 @@ namespace WinLibrary.Views
                 return _bookToSavePages;
             }
             set { _bookToSavePages = (int) value; }
+        }
+
+        private Image _coverImage;
+        public Image CoverImage
+        {
+            get
+            {
+                _coverImage = bookPreviumImage;
+                return _coverImage;
+            }
+            set { _coverImage = value; }
+        }
+
+        private string _bookToSaveCoverImageUrl;
+        public string BookToSaveCoverImageUrl
+        {
+            get
+            {
+                return _bookToSaveCoverImageUrl;
+            }
+            set { _bookToSaveCoverImageUrl = value; }
+        }
+
+        private string _bookToSaveIsbn;
+        public string BookToSaveIsbn
+        {
+            get
+            {
+                _bookToSaveIsbn = IsbnBox.Text;
+                return _bookToSaveIsbn;
+            }
+            set { _bookToSaveIsbn = value; }
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -183,6 +220,15 @@ namespace WinLibrary.Views
         private void PagesNumberBox_OnLostFocus(object sender, RoutedEventArgs e)
         {
             ReturnValueWhenLostFocus(PagesNumberBox, _pagesNumberBoxDefaultText);
+        }
+        private void IsbnBox_OnGotFocus(object sender, RoutedEventArgs e)
+        {
+            ReturnValueWhenGotFocus(IsbnBox, _isbnBoxDefaultText);
+        }
+
+        private void IsbnBox_OnLostFocus(object sender, RoutedEventArgs e)
+        {
+            ReturnValueWhenLostFocus(IsbnBox, _isbnBoxDefaultText);
         }
         #endregion TextBoxEvent region
     }

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using WinLibrary.ViewModel;
 
 namespace WinLibrary
@@ -8,16 +9,25 @@ namespace WinLibrary
     /// </summary>
     public partial class MainWindows
     {
-        public BookViewModel BookViewModel = new BookViewModel();
+        public BookViewModel bookViewModel = new BookViewModel();
         public MainWindows()
         {
             InitializeComponent();
-            this.DataContext = BookViewModel;
+            this.DataContext = bookViewModel;
         }
 
         private void QuitProgram(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void BooksGrid_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
+        {
+            var currentBook = bookViewModel.GetBook(selectedIsbnBox.Text);
+            if (currentBook != null)
+            {
+                this.selectedBookImage.Source = BookViewModel.ReturnImageFromUrl(currentBook.CoverImage);
+            }
         }
     }
 }

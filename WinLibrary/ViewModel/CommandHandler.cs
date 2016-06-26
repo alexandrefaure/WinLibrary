@@ -5,9 +5,9 @@ namespace WinLibrary.ViewModel
 {
     public class CommandHandler : ICommand
     {
-        private Action _action;
+        private Action<object> _action;
         private bool _canExecute;
-        public CommandHandler(Action action, bool canExecute)
+        public CommandHandler(Action<object> action, bool canExecute)
         {
             _action = action;
             _canExecute = canExecute;
@@ -22,7 +22,7 @@ namespace WinLibrary.ViewModel
 
         public void Execute(object parameter)
         {
-            _action();
+            _action(parameter);
         }
     }
 }
