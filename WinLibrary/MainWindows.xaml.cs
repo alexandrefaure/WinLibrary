@@ -16,11 +16,6 @@ namespace WinLibrary
             this.DataContext = bookViewModel;
         }
 
-        private void QuitProgram(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void BooksGrid_OnSelectedCellsChanged(object sender, SelectedCellsChangedEventArgs e)
         {
             var currentBook = bookViewModel.GetBook(selectedIsbnBox.Text);

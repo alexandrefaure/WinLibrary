@@ -58,7 +58,7 @@ namespace WinLibrary.Tests.AmazonAPI
             Assert.AreEqual(itemAttributes.Label, book.Editor);
             Assert.AreEqual(itemAttributes.PublicationDate, book.PublishedYear);
             Assert.AreEqual(itemAttributes.NumberOfPages, book.PagesNumber.ToString());
-            Assert.AreEqual(itemAttributes.ISBN, book.Isbn);
+            Assert.AreEqual(itemAttributes.EAN, book.Isbn);
             Assert.AreEqual(item.LargeImage.URL, book.CoverImage);
         }
 

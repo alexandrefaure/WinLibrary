@@ -54,7 +54,7 @@ namespace WinLibrary.AmazonAPI
                     Editor = itemAttributes.Label,
                     PublishedYear = itemAttributes.PublicationDate,
                     PagesNumber = Convert.ToInt64(itemAttributes.NumberOfPages),
-                    Isbn = itemAttributes.ISBN,
+                    Isbn = itemAttributes.EAN,
                     CoverImage = item.LargeImage.URL
                     //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
                     //Editor = itemAttributes.Edition,

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using WinLibrary.AmazonAPI;
@@ -11,11 +11,14 @@ namespace WinLibrary.ViewModel
 {
     public partial class BookViewModel
     {
+        public string ApplicationName = "WinLibrary";
+
         private ICommand _addBookCommand;
         private readonly bool _canExecute;
         private ICommand _purgeAllBooksCommand;
         private ICommand _loadDummyBooksCommand;
         private ICommand _getBookFromAmazonCommand;
+        private ICommand _shutdownAppCommand;
 
         public ICommand AddBookCommand
         {
@@ -35,6 +38,21 @@ namespace WinLibrary.ViewModel
         public ICommand GetBookFromAmazonCommand
         {
             get { return _getBookFromAmazonCommand ?? (_getBookFromAmazonCommand = new CommandHandler(param => GetBookFromAmazon(param), _canExecute)); }
+        }
+
+        public ICommand ShutdownAppCommand
+        {
+            get { return _shutdownAppCommand ?? (_shutdownAppCommand = new CommandHandler(param => ShutDownApp(param), _canExecute)); }
+        }
+
+        private void ShutDownApp(object o)
+        {
+            var messageBoxResult = MessageBox.Show("Voulez-vous vraiment quitter WinLibrary ?", ApplicationName,
+                MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void LoadDummyBooks(object obj)
@@ -120,11 +138,6 @@ namespace WinLibrary.ViewModel
                 bitmap.EndInit();
             }
             return bitmap;
-        }
-
-        public Image TestMethod()
-        {
-            return new Image();
         }
 
         public Book GetBook(string text)
