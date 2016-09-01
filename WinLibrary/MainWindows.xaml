@@ -5,9 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="WinLibrary" Height="787.5" Width="787.5" WindowStyle="SingleBorderWindow" WindowState="Maximized">
+        Title="WinLibrary" Height="787.5" Width="787.5" WindowStyle="SingleBorderWindow" WindowState="Maximized" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
-        <Menu x:Name="Menu" Height="19" VerticalAlignment="Top">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="122*"/>
+            <ColumnDefinition Width="269*"/>
+        </Grid.ColumnDefinitions>
+        <Menu x:Name="Menu" Height="19" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem Header="_Fichier" FontSize="12">
                 <MenuItem Header="_Quitter" Command="{Binding ShutdownAppCommand}"/>
             </MenuItem>
@@ -19,7 +23,7 @@
                 <MenuItem Header="Effacer BDD" Command="{Binding PurgeAllBooksCommand}"/>
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksGrid" SelectedCellsChanged="BooksGrid_OnSelectedCellsChanged" ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0.5,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286" AutoGenerateColumns="False">
+        <DataGrid x:Name="BooksGrid" SelectedCellsChanged="BooksGrid_OnSelectedCellsChanged" ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286" AutoGenerateColumns="False" Grid.ColumnSpan="2">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Titre" Binding="{Binding Path=Title}" />
                 <DataGridTextColumn Header="Auteur" Binding="{Binding Path=Author}" />
@@ -29,7 +33,7 @@
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Path=Isbn}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Canvas Name="BookDetail" HorizontalAlignment="Left" Margin="10,24,0,379" Width="762">
+        <Canvas Name="BookDetail" HorizontalAlignment="Left" Margin="10,24,0,379" Width="762" Grid.ColumnSpan="2">
             <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="22" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="31" Width="525"/>
             <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="22" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="80" Width="178"/>
             <TextBox x:Name="selectedIsbnBox" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}" Height="22" Canvas.Left="44" TextWrapping="Wrap" Canvas.Top="301" Width="178"/>
