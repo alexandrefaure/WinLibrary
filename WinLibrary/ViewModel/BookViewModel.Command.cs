@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
@@ -11,6 +12,8 @@ namespace WinLibrary.ViewModel
 {
     public partial class BookViewModel
     {
+        readonly Window _currentWindow = Application.Current.Windows.OfType<Window>().LastOrDefault(x => x.IsActive);
+
         public string ApplicationName = "WinLibrary";
 
         private ICommand _addBookCommand;
@@ -19,6 +22,19 @@ namespace WinLibrary.ViewModel
         private ICommand _loadDummyBooksCommand;
         private ICommand _getBookFromAmazonCommand;
         private ICommand _shutdownAppCommand;
+        private ICommand _closeWindowCommand;
+        private ICommand _saveButtonCommand;
+
+        public ICommand SaveButtonCommand
+        {
+            get { return _saveButtonCommand ?? (_saveButtonCommand = new CommandHandler(SaveButton, _canExecute)); }
+        }
+
+
+        public ICommand CloseWindowCommand
+        {
+            get { return _closeWindowCommand ?? (_closeWindowCommand = new CommandHandler(CloseWindow, _canExecute)); }
+        }
 
         public ICommand AddBookCommand
         {
@@ -67,7 +83,7 @@ namespace WinLibrary.ViewModel
             var livre8 = AmazonApi.GetBook("9782960142907");
             var livre9 = AmazonApi.GetBook("9782221066881");
             var livre10 = AmazonApi.GetBook("9782749916347");
-            BookObservableCollection.AddRange(new List<Book>
+            BookService.AddRange(new List<Book>
             {
                 livre1,
                 livre2,
@@ -99,13 +115,13 @@ namespace WinLibrary.ViewModel
                     Isbn = saveBookWindow.IsbnBox.Text,
                     CoverImage = saveBookWindow.BookToSaveCoverImageUrl
                 };
-                BookObservableCollection.Add(testBook);
+                BookService.Add(testBook);
             }
         }
 
         public void PurgeAllDatabase(object obj)
         {
-            BookObservableCollection.DeleteAllBooks();
+            BookService.DeleteAllBooks();
         }
 
         private void GetBookFromAmazon(object param)
@@ -142,7 +158,27 @@ namespace WinLibrary.ViewModel
 
         public Book GetBook(string text)
         {
-           return BookObservableCollection.Get(text);
+           return BookService.Get(text);
+        }
+        //todo refactor CloseWindow et SaveButton + virer les méthodes du xaml.cs dans le viewModel
+        public void CloseWindow(object o)
+        {
+            var saveBookWindow = Application.Current.Windows.OfType<SaveBookWindow>().LastOrDefault(x => x.IsActive);
+            if (saveBookWindow != null)
+            {
+                saveBookWindow.IsBookNeedToSave = false;
+                saveBookWindow.Close();
+            }
+        }
+
+        private void SaveButton(object o)
+        {
+            var saveBookWindow = Application.Current.Windows.OfType<SaveBookWindow>().LastOrDefault(x => x.IsActive);
+            if (saveBookWindow != null)
+            {
+                saveBookWindow.IsBookNeedToSave = true;
+                saveBookWindow.Close();
+            }
         }
     }
 }

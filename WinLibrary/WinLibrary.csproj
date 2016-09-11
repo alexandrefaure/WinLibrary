@@ -260,7 +260,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Model\BookObservableCollection.cs" />
+    <Compile Include="Services\BookService.cs" />
     <Compile Include="ViewModel\BookViewModel.Command.cs" />
     <Compile Include="ViewModel\BookViewModel.cs" />
     <Compile Include="ViewModel\CommandHandler.cs" />
@@ -286,7 +286,7 @@
     <Compile Include="Views\SaveBookWindow.xaml.cs">
       <DependentUpon>SaveBookWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainWindows.xaml.cs">
+    <Compile Include="Views\MainWindows.xaml.cs">
       <DependentUpon>MainWindows.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -330,7 +330,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindows.xaml">
+    <Page Include="Views\MainWindows.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

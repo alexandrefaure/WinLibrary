@@ -2,6 +2,7 @@
 using System.Linq;
 using NUnit.Framework;
 using WinLibrary.Model;
+using WinLibrary.Services;
 
 namespace WinLibrary.Tests.Model
 {
@@ -16,7 +17,7 @@ namespace WinLibrary.Tests.Model
             var booksList = new List<Book> {new Book {Title = expectedTitle } };
 
             // Act
-            var bookObservableCollection = new BookObservableCollection(booksList);
+            var bookObservableCollection = new BookService(booksList);
             var booksCollection = bookObservableCollection.BooksCollection;
 
             // Assert
@@ -30,7 +31,7 @@ namespace WinLibrary.Tests.Model
             // Arrange
             var expectedTitle = "TestBookToAdd";
             var booksList = new List<Book>();
-            var bookObservableCollection = new BookObservableCollection(booksList);
+            var bookObservableCollection = new BookService(booksList);
             var bookToAdd = new Book { Title = expectedTitle };
             var booksCollection = bookObservableCollection.BooksCollection;
 
@@ -48,7 +49,7 @@ namespace WinLibrary.Tests.Model
             // Arrange
             var expectedTitle = "TestBookToAdd";
             var booksList = new List<Book> { new Book { Title = "TestBook1" }, new Book { Title = "TestBook2" } };
-            var bookObservableCollection = new BookObservableCollection(booksList);
+            var bookObservableCollection = new BookService(booksList);
             var booksCollection = bookObservableCollection.BooksCollection;
             Assert.AreEqual(2, booksCollection.Count);
 

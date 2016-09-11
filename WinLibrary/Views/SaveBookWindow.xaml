@@ -12,8 +12,8 @@
         <TextBox x:Name="EditorBox" Text="Editeur" GotFocus="EditorBox_OnGotFocus" LostFocus="EditorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="237" Canvas.Top="181"/>
         <TextBox x:Name="YearBox"  Text="Année" GotFocus="YearBox_OnGotFocus" LostFocus="YearBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="504" Canvas.Top="139"/>
         <TextBox x:Name="PagesNumberBox"  Text="Nombre de pages" GotFocus="PagesNumberBox_OnGotFocus" LostFocus="PagesNumberBox_OnLostFocus" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="504" Canvas.Top="181"/>
-        <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Click="SaveButton_Click" Canvas.Left="568" Canvas.Top="312" Height="28"/>
-        <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Click="CloseButton_Click" Canvas.Left="700" Canvas.Top="312" Height="28"/>
+        <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Command="{Binding SaveButtonCommand}" Canvas.Left="568" Canvas.Top="312" Height="28"/>
+        <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Command="{Binding CloseWindowCommand}" Canvas.Left="700" Canvas.Top="312" Height="28"/>
 
         <TextBox x:Name="IsbnBox"  Text="ISBN" GotFocus="IsbnBox_OnGotFocus" LostFocus="IsbnBox_OnLostFocus" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Center"  Width="138" Canvas.Left="344" Canvas.Top="37"/>
         <Button x:Name="GetBookFromAmazonButton" Content="Rechercher" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="121" Command="{Binding GetBookFromAmazonCommand}" CommandParameter="{Binding ElementName=SaveBookWindowName}" Canvas.Left="504" Canvas.Top="37" Height="20"/>

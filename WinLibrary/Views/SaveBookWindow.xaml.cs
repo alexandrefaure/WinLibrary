@@ -1,7 +1,5 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Imaging;
 using WinLibrary.ViewModel;
 
 namespace WinLibrary.Views
@@ -130,11 +128,11 @@ namespace WinLibrary.Views
             set { _bookToSaveIsbn = value; }
         }
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e)
-        {
-            IsBookNeedToSave = true;
-            this.Close();
-        }
+        //private void SaveButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    IsBookNeedToSave = true;
+        //    this.Close();
+        //}
         private int FromStringToInt(string inputString)
         {
             int result;
