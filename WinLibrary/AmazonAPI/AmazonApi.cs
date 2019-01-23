@@ -52,10 +52,10 @@ namespace WinLibrary.AmazonAPI
                     Title = itemAttributes.Title,
                     Author = authorList.First(),
                     Editor = itemAttributes.Label,
-                    PublishedYear = itemAttributes.PublicationDate,
-                    PagesNumber = Convert.ToInt64(itemAttributes.NumberOfPages),
+                    //PublishedYear = itemAttributes.PublicationDate,
+                    //PagesNumber = Convert.ToInt64(itemAttributes.NumberOfPages),
                     Isbn = itemAttributes.EAN,
-                    CoverImage = item.LargeImage.URL
+                    //CoverImage = item.LargeImage.URL
                     //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
                     //Editor = itemAttributes.Edition,
                     //Year = itemAttributes.ModelYear,

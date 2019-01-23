@@ -15,13 +15,13 @@ namespace WinLibrary.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private readonly DatabaseEntities _dataContext = new DatabaseEntities();
+        private readonly Entities _dataContext = new Entities();
         public ObservableCollection<Book> BooksCollection { get; set; }
         public BookService BookService { get; set; }
         public BookViewModel()
         {
             _canExecute = true;
-            BookService = new BookService(_dataContext.Books);
+            BookService = new BookService(_dataContext.Book);
             BooksCollection = BookService.BooksCollection;
         }
 

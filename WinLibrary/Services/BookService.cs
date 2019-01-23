@@ -1,6 +1,11 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
+using Google.Apis.Books.v1;
+using Google.Apis.Books.v1.Data;
+using Google.Apis.Services;
 using WinLibrary.DAL;
 using WinLibrary.Model;
 

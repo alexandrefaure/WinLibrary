@@ -193,3 +193,6 @@ $RECYCLE.BIN/
 #Ignore sql lite database file
 *.db
 WinLibrary/AmazonAPI/AmazonApiCredentials.cs
+
+#ignore keys.config file
+keys.config

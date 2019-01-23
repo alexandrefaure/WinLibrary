@@ -73,16 +73,16 @@ namespace WinLibrary.ViewModel
 
         private void LoadDummyBooks(object obj)
         {
-            var livre1 = AmazonApi.GetBook("9782100738748");
-            var livre2 = AmazonApi.GetBook("9782754038652");
-            var livre3 = AmazonApi.GetBook("9782212558517");
-            var livre4 = AmazonApi.GetBook("9782749142555");
-            var livre5 = AmazonApi.GetBook("9782218977275");
-            var livre6 = AmazonApi.GetBook("9782742716555");
-            var livre7 = AmazonApi.GetBook("9782067197251");
-            var livre8 = AmazonApi.GetBook("9782960142907");
-            var livre9 = AmazonApi.GetBook("9782221066881");
-            var livre10 = AmazonApi.GetBook("9782749916347");
+            var livre1 = GoogleApi.GetBook("9782100738748");
+            var livre2 = GoogleApi.GetBook("9782754038652");
+            var livre3 = GoogleApi.GetBook("9782212558517");
+            var livre4 = GoogleApi.GetBook("9782749142555");
+            var livre5 = GoogleApi.GetBook("9782218977275");
+            var livre6 = GoogleApi.GetBook("9782742716555");
+            var livre7 = GoogleApi.GetBook("9782067197251");
+            var livre8 = GoogleApi.GetBook("9782960142907");
+            var livre9 = GoogleApi.GetBook("9782221066881");
+            var livre10 = GoogleApi.GetBook("9782749916347");
             BookService.AddRange(new List<Book>
             {
                 livre1,
@@ -110,10 +110,10 @@ namespace WinLibrary.ViewModel
                     Title = saveBookWindow.BookToSaveTitle,
                     Author = saveBookWindow.BookToSaveAuthor,
                     Editor = saveBookWindow.BookToSaveEditor,
-                    PublishedYear = saveBookWindow.BookToSaveYear,
-                    PagesNumber = saveBookWindow.BookToSavePages,
+                    //PublishedYear = saveBookWindow.BookToSaveYear,
+                    //PagesNumber = saveBookWindow.BookToSavePages,
                     Isbn = saveBookWindow.IsbnBox.Text,
-                    CoverImage = saveBookWindow.BookToSaveCoverImageUrl
+                    //CoverImage = saveBookWindow.BookToSaveCoverImageUrl
                 };
                 BookService.Add(testBook);
             }
@@ -133,12 +133,12 @@ namespace WinLibrary.ViewModel
                 canvas.TitleBox.Text = book.Title;
                 canvas.AuthorBox.Text = book.Author;
                 canvas.EditorBox.Text = book.Editor;
-                canvas.YearBox.Text = book.PublishedYear;
+                //canvas.YearBox.Text = book.PublishedYear;
                 canvas.PagesNumberBox.Text = book.PagesNumber.ToString();
 
-                var bitmap = ReturnImageFromUrl(book.CoverImage);
-                canvas.CoverImage.Source = bitmap;
-                canvas.BookToSaveCoverImageUrl = book.CoverImage;
+                //var bitmap = ReturnImageFromUrl(book.CoverImage);
+                //canvas.CoverImage.Source = bitmap;
+                //canvas.BookToSaveCoverImageUrl = book.CoverImage;
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using WinLibrary.Model;
 
@@ -8,9 +9,9 @@ namespace WinLibrary.DAL
     {
         public static void SaveBook(Book book)
         {
-            using (var databaseEntities = new DatabaseEntities())
+            using (var databaseEntities = new Entities())
             {
-                databaseEntities.Books.Add(book);
+                databaseEntities.Book.AddOrUpdate(book);
                 databaseEntities.SaveChanges();
             }
         }
@@ -18,20 +19,20 @@ namespace WinLibrary.DAL
         public static List<Book> LoadAllBooks()
         {
             List<Book> booksCollection;
-            using (var databaseEntities = new DatabaseEntities())
+            using (var databaseEntities = new Entities())
             {
-                booksCollection = databaseEntities.Books.ToList();
+                booksCollection = databaseEntities.Book.ToList();
             }
             return booksCollection;
         }
 
         public static void Clear()
         {
-            using (var databaseEntities = new DatabaseEntities())
+            using (var databaseEntities = new Entities())
             {
-                foreach (var bookEntry in databaseEntities.Books)
+                foreach (var bookEntry in databaseEntities.Book)
                 {
-                    databaseEntities.Books.Remove(bookEntry);
+                    databaseEntities.Book.Remove(bookEntry);
                 }
                 databaseEntities.SaveChanges();
             }
