@@ -8,8 +8,8 @@ namespace WinLibrary.AmazonAPI
 {
     public class AmazonApi
     {
-        private const string AccesKeyId = AmazonApiCredentials.AccesKeyId;
-        private const string SecretKeyId = AmazonApiCredentials.SecretKeyId;
+        private const string AccesKeyId = null;//AmazonApiCredentials.AccesKeyId;
+        private const string SecretKeyId = null;//AmazonApiCredentials.SecretKeyId;
 
         public static Book GetBook(string isbn)
         {

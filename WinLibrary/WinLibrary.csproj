@@ -255,7 +255,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="AmazonAPI\AmazonApi.cs" />
-    <Compile Include="AmazonAPI\AmazonApiCredentials.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
