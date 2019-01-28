@@ -1,4 +1,7 @@
 # WinLibrary
+
+[![Build Status](https://dev.azure.com/alexousky/WinLibrary/_apis/build/status/alexousky.WinLibrary?branchName=master)](https://dev.azure.com/alexousky/WinLibrary/_build/latest?definitionId=2?branchName=master)
+
 Logiciel libre pour gestion de bibliothèque
 
 Actuellement, cette application permet :
