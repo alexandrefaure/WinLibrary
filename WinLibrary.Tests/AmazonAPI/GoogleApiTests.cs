@@ -35,7 +35,7 @@ namespace WinLibrary.Tests.AmazonAPI
         [Test]
         public void TestIsbnSearch()
         {
-            string isbn = "9782100738748";
+            var isbn = "9782100742165";
             var output = GoogleApi.SearchISBN(isbn);
 
             Assert.AreEqual(output != null, true);

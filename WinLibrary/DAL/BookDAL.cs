@@ -11,7 +11,7 @@ namespace WinLibrary.DAL
         {
             using (var databaseEntities = new Entities())
             {
-                databaseEntities.Book.AddOrUpdate(book);
+                databaseEntities.Books.AddOrUpdate(book);
                 databaseEntities.SaveChanges();
             }
         }
@@ -21,7 +21,7 @@ namespace WinLibrary.DAL
             List<Book> booksCollection;
             using (var databaseEntities = new Entities())
             {
-                booksCollection = databaseEntities.Book.ToList();
+                booksCollection = databaseEntities.Books.ToList();
             }
             return booksCollection;
         }
@@ -30,9 +30,9 @@ namespace WinLibrary.DAL
         {
             using (var databaseEntities = new Entities())
             {
-                foreach (var bookEntry in databaseEntities.Book)
+                foreach (var bookEntry in databaseEntities.Books)
                 {
-                    databaseEntities.Book.Remove(bookEntry);
+                    databaseEntities.Books.Remove(bookEntry);
                 }
                 databaseEntities.SaveChanges();
             }

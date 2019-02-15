@@ -59,10 +59,10 @@ namespace WinLibrary.AmazonAPI
                     Title = googleBookInformation.Title,
                     Author = googleBookInformation.Authors.FirstOrDefault(),
                     Editor = googleBookInformation.Publisher,
-                    //PublishedYear = itemAttributes.PublicationDate,
-                    //PagesNumber = Convert.ToInt64(itemAttributes.NumberOfPages),
-                    //Isbn = itemAttributes.EAN,
-                    //CoverImage = item.LargeImage.URL
+                    PublishedYear = googleBookInformation.PublishedDate,
+                    PagesNumber = googleBookInformation.PageCount,
+                    //Isbn = googleBookInformation.
+                    Image = googleBookInformation.ImageLinks?.Thumbnail
                     //BookToSaveAuthor = itemAttributes.BookToSaveAuthor,
                     //Editor = itemAttributes.Edition,
                     //Year = itemAttributes.ModelYear,

@@ -129,7 +129,7 @@ namespace WinLibrary.ViewModel
             var canvas = (SaveBookWindow) param;
             if (canvas.IsbnBox.Text != string.Empty)
             {
-                var book = AmazonAPI.AmazonApi.GetBook(canvas.IsbnBox.Text);
+                var book = GoogleApi.GetBook(canvas.IsbnBox.Text);
                 canvas.TitleBox.Text = book.Title;
                 canvas.AuthorBox.Text = book.Author;
                 canvas.EditorBox.Text = book.Editor;

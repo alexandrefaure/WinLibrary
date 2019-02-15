@@ -14,12 +14,13 @@ namespace WinLibrary.Model
     
     public partial class Book
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string Editor { get; set; }
-        public Nullable<System.DateTime> PublishedYear { get; set; }
-        public Nullable<int> PagesNumber { get; set; }
+        public string PublishedYear { get; set; }
+        public Nullable<long> PagesNumber { get; set; }
         public string Isbn { get; set; }
+        public string Image { get; set; }
     }
 }

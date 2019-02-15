@@ -39,7 +39,7 @@
             <TextBox x:Name="selectedIsbnBox" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}" Height="22" Canvas.Left="44" TextWrapping="Wrap" Canvas.Top="301" Width="178"/>
             <TextBlock x:Name="textBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Titre" Canvas.Top="10"/>
             <Border BorderThickness="2" BorderBrush="#FF000000">
-                <Image x:Name="selectedBookImage" Source="{Binding SelectedItem.CoverImage, ElementName=BooksGrid}" Height="292" Canvas.Left="10" Width="218" Canvas.Top="10"/>
+                <Image x:Name="selectedBookImage" Source="{Binding SelectedItem.Image, ElementName=BooksGrid}" Height="292" Canvas.Left="10" Width="218" Canvas.Top="10"/>
             </Border>
             <TextBlock x:Name="authorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Auteur" Canvas.Top="59"/>
             <TextBox x:Name="selectedPublishedYearBox" Text="{Binding SelectedItem.PublishedYear, ElementName=BooksGrid}" Height="22" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="80" Width="113"/>

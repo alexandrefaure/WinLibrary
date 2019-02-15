@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using DevExpress.XtraPrinting.Native;
 using WinLibrary.Model;
 using WinLibrary.Services;
 
@@ -21,13 +20,8 @@ namespace WinLibrary.ViewModel
         public BookViewModel()
         {
             _canExecute = true;
-            BookService = new BookService(_dataContext.Book);
+            BookService = new BookService(_dataContext.Books);
             BooksCollection = BookService.BooksCollection;
-        }
-
-        public bool IsBooksDatabaseEmpty()
-        {
-            return BooksCollection.IsEmpty();
         }
 
         private Book _currentBook;
