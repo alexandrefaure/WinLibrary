@@ -1,29 +1,32 @@
-﻿<Window x:Class="WinLibrary.Views.MainWindows"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        ResizeMode="NoResize"
-        mc:Ignorable="d"
-        Title="WinLibrary" Height="787.5" Width="787.5" WindowStyle="SingleBorderWindow" WindowState="Maximized" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+﻿<Controls:MetroWindow x:Class="WinLibrary.Views.MainWindows"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      Title="WinLibrary"
+                      Height="600"
+                      Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="122*"/>
-            <ColumnDefinition Width="269*"/>
+            <ColumnDefinition Width="122*" />
+            <ColumnDefinition Width="269*" />
         </Grid.ColumnDefinitions>
-        <Menu x:Name="Menu" Height="19" VerticalAlignment="Top" Grid.ColumnSpan="2">
+        <Menu x:Name="Menu" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem Header="_Fichier" FontSize="12">
-                <MenuItem Header="_Quitter" Command="{Binding ShutdownAppCommand}"/>
+                <MenuItem Header="_Quitter" Command="{Binding ShutdownAppCommand}" />
             </MenuItem>
             <MenuItem Header="_Livres" FontSize="12">
-                <MenuItem Header="_Ajouter" Command="{Binding AddBookCommand}"/>
+                <MenuItem Header="_Ajouter" Command="{Binding AddBookCommand}" />
             </MenuItem>
             <MenuItem Header="Administration" FontSize="12">
-                <MenuItem Header="Charger fausse liste" Command="{Binding LoadDummyBooksCommand}"/>
-                <MenuItem Header="Effacer BDD" Command="{Binding PurgeAllBooksCommand}"/>
+                <MenuItem Header="Charger fausse liste" Command="{Binding LoadDummyBooksCommand}" />
+                <MenuItem Header="Effacer BDD" Command="{Binding PurgeAllBooksCommand}" />
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksGrid" ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"  Margin="0,0,0,24" MinHeight="350" VerticalScrollBarVisibility="Auto" VerticalAlignment="Bottom" Height="286" AutoGenerateColumns="False" Grid.ColumnSpan="2" SelectedItem="{Binding Path=CurrentBook, Mode=TwoWay}">
+        <DataGrid x:Name="BooksGrid"
+                  ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                  Margin="0,219,0,0" MinHeight="350" VerticalScrollBarVisibility="Auto"
+                  Height="214" AutoGenerateColumns="False" Grid.ColumnSpan="2"
+                  SelectedItem="{Binding Path=CurrentBook, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="792">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Titre" Binding="{Binding Path=Title}" />
                 <DataGridTextColumn Header="Auteur" Binding="{Binding Path=Author}" />
@@ -33,23 +36,32 @@
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Path=Isbn}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Canvas Name="BookDetail" HorizontalAlignment="Left" Margin="10,24,0,379" Width="762" Grid.ColumnSpan="2">
-            <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="22" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="31" Width="525"/>
-            <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="22" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="80" Width="178"/>
-            <TextBox x:Name="selectedIsbnBox" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}" Height="22" Canvas.Left="44" TextWrapping="Wrap" Canvas.Top="301" Width="178"/>
-            <TextBlock x:Name="textBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Titre" Canvas.Top="10"/>
+        <Canvas Name="BookDetail" Margin="0,0,10,370" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="772" Height="166" VerticalAlignment="Bottom">
+            <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="22"
+                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="31" Width="525" />
+            <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="22"
+                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="80" Width="178" />
+            <TextBox x:Name="selectedIsbnBox" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}" Height="22"
+                     Canvas.Left="574" TextWrapping="Wrap" Canvas.Top="80" Width="178" />
+            <TextBlock x:Name="textBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Titre" Canvas.Top="10" />
             <Border BorderThickness="2" BorderBrush="#FF000000">
-                <Image x:Name="selectedBookImage" Source="{Binding SelectedItem.Image, ElementName=BooksGrid}" Height="292" Canvas.Left="10" Width="218" Canvas.Top="10"/>
+                <Image x:Name="selectedBookImage" Source="{Binding SelectedItem.Image, ElementName=BooksGrid}"
+                       Height="157" Canvas.Left="10" Width="167" Canvas.Top="10" />
             </Border>
-            <TextBlock x:Name="authorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Auteur" Canvas.Top="59"/>
-            <TextBox x:Name="selectedPublishedYearBox" Text="{Binding SelectedItem.PublishedYear, ElementName=BooksGrid}" Height="22" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="80" Width="113"/>
-            <TextBlock x:Name="publishedYearTextBlock" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="59" Text="Année de publication"/>
-            <TextBlock x:Name="styleTextBlock" Canvas.Left="632" TextWrapping="Wrap" Canvas.Top="59" Text="Genre"/>
-            <TextBox x:Name="selectedPagesNumberBox" Text="{Binding SelectedItem.PagesNumber, ElementName=BooksGrid}" Height="22" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="130" Width="113"/>
-            <TextBlock x:Name="pagesNumberTextBlock" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="109" Text="Nombre de pages"/>
-            <TextBox x:Name="selectedEditorBox" Text="{Binding SelectedItem.Editor, ElementName=BooksGrid}" Height="22" Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="130" Width="178"/>
-            <TextBlock x:Name="editorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Editeur" Canvas.Top="109"/>
-            <TextBlock x:Name="editorTextBlock_Copy" Canvas.Left="10" TextWrapping="Wrap" Text="ISBN" Canvas.Top="301"/>
+            <TextBlock x:Name="authorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Auteur" Canvas.Top="59" />
+            <TextBox x:Name="selectedPublishedYearBox"
+                     Text="{Binding SelectedItem.PublishedYear, ElementName=BooksGrid}" Height="22" Canvas.Left="425"
+                     TextWrapping="Wrap" Canvas.Top="80" Width="113" />
+            <TextBlock x:Name="publishedYearTextBlock" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="59"
+                       Text="Année de publication" />
+            <TextBox x:Name="selectedPagesNumberBox" Text="{Binding SelectedItem.PagesNumber, ElementName=BooksGrid}"
+                     Height="22" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="130" Width="113" />
+            <TextBlock x:Name="pagesNumberTextBlock" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="109"
+                       Text="Nombre de pages" />
+            <TextBox x:Name="selectedEditorBox" Text="{Binding SelectedItem.Editor, ElementName=BooksGrid}" Height="22"
+                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="130" Width="178" />
+            <TextBlock x:Name="editorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Editeur" Canvas.Top="109" />
+            <TextBlock x:Name="editorTextBlock_Copy" Canvas.Left="574" TextWrapping="Wrap" Text="ISBN" Canvas.Top="59" RenderTransformOrigin="13.8,-6.062" />
         </Canvas>
     </Grid>
-</Window>
+</Controls:MetroWindow>

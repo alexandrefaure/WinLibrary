@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using MahApps.Metro.Controls;
 using WinLibrary.ViewModel;
 
 namespace WinLibrary.Views
@@ -7,7 +8,7 @@ namespace WinLibrary.Views
     /// <summary>
     /// Interaction logic for SaveBookWindow.xaml
     /// </summary>
-    public partial class SaveBookWindow : Window
+    public partial class SaveBookWindow : MetroWindow
     {
         private readonly string _titleBoxDefaultText = "Titre";
         private readonly string _authorBoxDefaultText = "Auteur";
@@ -16,13 +17,13 @@ namespace WinLibrary.Views
         private readonly string _pagesNumberBoxDefaultText = "Nombre de pages";
         private readonly string _isbnBoxDefaultText = "9782100738748";
 
-        public BookViewModel BookViewModel = new BookViewModel();
+        //public BookViewModel BookViewModel = new BookViewModel();
         public bool IsBookNeedToSave = false;
         public SaveBookWindow()
         {
             InitializeComponent();
             InitializeBoxFields();
-            this.DataContext = BookViewModel;
+            //this.DataContext = BookViewModel;
         }
 
         private void InitializeBoxFields()

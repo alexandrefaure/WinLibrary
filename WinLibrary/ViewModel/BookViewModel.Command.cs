@@ -20,7 +20,7 @@ namespace WinLibrary.ViewModel
         private readonly bool _canExecute;
         private ICommand _purgeAllBooksCommand;
         private ICommand _loadDummyBooksCommand;
-        private ICommand _getBookFromAmazonCommand;
+        //private ICommand _getBookFromAmazonCommand;
         private ICommand _shutdownAppCommand;
         private ICommand _closeWindowCommand;
         private ICommand _saveButtonCommand;
@@ -51,10 +51,10 @@ namespace WinLibrary.ViewModel
             get { return _loadDummyBooksCommand ?? (_loadDummyBooksCommand = new CommandHandler(LoadDummyBooks, _canExecute)); }
         }
 
-        public ICommand GetBookFromAmazonCommand
-        {
-            get { return _getBookFromAmazonCommand ?? (_getBookFromAmazonCommand = new CommandHandler(param => GetBookFromAmazon(param), _canExecute)); }
-        }
+        //public ICommand GetBookFromAmazonCommand
+        //{
+        //    get { return _getBookFromAmazonCommand ?? (_getBookFromAmazonCommand = new CommandHandler(param => GetBookFromAmazon(param), _canExecute)); }
+        //}
 
         public ICommand ShutdownAppCommand
         {
