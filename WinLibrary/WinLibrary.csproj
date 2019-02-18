@@ -173,10 +173,8 @@
       <DependentUpon>EntityModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Services\BookService.cs" />
-    <Compile Include="ViewModel\BookViewModel.Command.cs" />
-    <Compile Include="ViewModel\BookViewModel.cs" />
-    <Compile Include="ViewModel\CommandHandler.cs" />
     <Compile Include="DAL\BookDAL.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\SaveBookViewModel.cs" />
     <Compile Include="Views\SaveBookWindow.xaml.cs">
       <DependentUpon>SaveBookWindow.xaml</DependentUpon>

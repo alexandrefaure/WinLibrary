@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Linq;
+using System.Windows;
 using Google.Apis.Books.v1;
 using Google.Apis.Books.v1.Data;
 using Google.Apis.Services;
@@ -10,25 +11,41 @@ namespace WinLibrary.AmazonAPI
 {
     public class GoogleApi
     {
-        public static BooksService service = new BooksService(new BaseClientService.Initializer
+        public GoogleApi()
         {
-            ApplicationName = ConfigurationManager.AppSettings["ApplicationName"],
-            ApiKey = ConfigurationManager.AppSettings["ApiKey"],
-        });
+            CheckGoogleApiIsActive();
+            Service = new BooksService(new BaseClientService.Initializer
+            {
+                ApplicationName = ConfigurationManager.AppSettings["ApplicationName"],
+                ApiKey = ConfigurationManager.AppSettings["ApiKey"],
+            });
+        }
 
-        public static Volume SearchISBN(string isbn)
+        public static BooksService Service;
+
+        private bool CheckGoogleApiIsActive()
+        {
+            return true;
+        }
+
+        public Volume SearchISBN(string isbn)
         {
             Console.WriteLine("Executing a book search request…");
-            var result = service.Volumes.List(isbn).ExecuteAsync();
-            if (result != null && result.Result.Items != null)
+            var result = Service.Volumes.List(isbn).ExecuteAsync();
+            if (result?.Result != null)
             {
-                var item = result.Result.Items.FirstOrDefault();
+                var item = result?.Result?.Items?.FirstOrDefault();
+                if (item == null)
+                {
+                    MessageBox.Show($"No ISBN found with reference {isbn}", "Error", MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
                 return item;
             }
             return null;
         }
 
-        public static Book GetBook(string isbn)
+        public Book GetBook(string isbn)
         {
             var bookInformation = SearchISBN(isbn);
 
