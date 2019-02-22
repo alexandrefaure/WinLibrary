@@ -8,8 +8,8 @@ using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WinLibrary.AmazonAPI;
+using WinLibrary.DAL;
 using WinLibrary.Model;
-using WinLibrary.Services;
 using WinLibrary.Views;
 
 namespace WinLibrary.ViewModel
@@ -18,10 +18,10 @@ namespace WinLibrary.ViewModel
     {
         private readonly bool _canExecute;
 
-        private readonly Window _currentWindow =
-            Application.Current.Windows.OfType<Window>().LastOrDefault(x => x.IsActive);
+        //private readonly Window _currentWindow =
+        //    Application.Current.Windows.OfType<Window>().LastOrDefault(x => x.IsActive);
 
-        private readonly Entities _dataContext = new Entities();
+        //private readonly Entities _dataContext = new Entities();
 
         private ICommand _addBookCommand;
         private ICommand _closeWindowCommand;
@@ -38,9 +38,11 @@ namespace WinLibrary.ViewModel
 
         public string ApplicationName = "WinLibrary";
         private GoogleApi googleApi;
+        public ObservableCollection<Book> BooksCollection { get; set; }
 
         public MainViewModel()
         {
+            BooksCollection = new ObservableCollection<Book>();
             googleApi = new GoogleApi();
             AddBookCommand = new RelayCommand(AddBook, () => true);
             SaveButtonCommand = new RelayCommand(SaveButton, () => true);
@@ -56,8 +58,6 @@ namespace WinLibrary.ViewModel
         public RelayCommand PurgeAllBooksCommand { get; }
         public RelayCommand LoadDummyBooksCommand { get; }
         public RelayCommand ShutdownAppCommand { get; }
-        public ObservableCollection<Book> BooksCollection { get; set; }
-        public BookService BookService { get; set; }
 
         public Book CurrentBook
         {
@@ -99,34 +99,21 @@ namespace WinLibrary.ViewModel
 
         private void LoadDummyBooks()
         {
-            var livre1 = googleApi.GetBook("9782100738748");
-            var livre2 = googleApi.GetBook("9782754038652");
-            var livre3 = googleApi.GetBook("9782212558517");
-            var livre4 = googleApi.GetBook("9782749142555");
-            var livre5 = googleApi.GetBook("9782218977275");
-            var livre6 = googleApi.GetBook("9782742716555");
-            var livre7 = googleApi.GetBook("9782067197251");
-            var livre8 = googleApi.GetBook("9782960142907");
-            var livre9 = googleApi.GetBook("9782221066881");
-            var livre10 =googleApi.GetBook("9782749916347");
-            BookService.AddRange(new List<Book>
-            {
-                livre1,
-                livre2,
-                livre3,
-                livre4,
-                livre5,
-                livre6,
-                livre7,
-                livre8,
-                livre9,
-                livre10
-            });
+            BooksCollection.Add(googleApi.GetBook("9782100738748"));
+            BooksCollection.Add(googleApi.GetBook("9782754038652"));
+            BooksCollection.Add(googleApi.GetBook("9782212558517"));
+            BooksCollection.Add(googleApi.GetBook("9782749142555"));
+            BooksCollection.Add(googleApi.GetBook("9782218977275"));
+            BooksCollection.Add(googleApi.GetBook("9782742716555"));
+            BooksCollection.Add(googleApi.GetBook("9782067197251"));
+            //BooksCollection.Add(googleApi.GetBook("9782960142907"));
+            BooksCollection.Add(googleApi.GetBook("9782221066881"));
+            BooksCollection.Add(googleApi.GetBook("9782749916347"));
         }
 
         public void PurgeAllDatabase()
         {
-            BookService.DeleteAllBooks();
+            DeleteAllBooks();
         }
 
         private void GetBookFromAmazon(object param)
@@ -164,7 +151,7 @@ namespace WinLibrary.ViewModel
 
         public Book GetBook(string text)
         {
-            return BookService.Get(text);
+            return Get(text);
         }
 
         //todo refactor CloseWindow et SaveButton + virer les méthodes du xaml.cs dans le viewModel
@@ -186,6 +173,39 @@ namespace WinLibrary.ViewModel
                 saveBookWindow.IsBookNeedToSave = true;
                 saveBookWindow.Close();
             }
+        }
+
+        public void Add(Book testBook)
+        {
+            if (testBook != null)
+            {
+                BooksCollection.Add(testBook);
+                BookDal.SaveBook(testBook);
+            }
+        }
+
+        public void DeleteAllBooks()
+        {
+            BooksCollection.Clear();
+            BookDal.Clear();
+        }
+
+        public void AddRange(List<Book> books)
+        {
+            foreach (var book in books)
+            {
+                Add(book);
+            }
+        }
+
+        public Book Get(string isbn)
+        {
+            Book book = null;
+            if (BooksCollection.Any())
+            {
+                book = BooksCollection.First(bk => bk.Isbn == isbn);
+            }
+            return book;
         }
     }
 }

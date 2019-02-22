@@ -2,7 +2,6 @@
 using System.Linq;
 using NUnit.Framework;
 using WinLibrary.AmazonAPI;
-using WinLibrary.Services;
 using Assert = NUnit.Framework.Assert;
 
 namespace WinLibrary.Tests.AmazonAPI
