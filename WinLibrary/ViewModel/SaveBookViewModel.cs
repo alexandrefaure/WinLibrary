@@ -1,8 +1,14 @@
-﻿using System.Windows;
+﻿using System;
+using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WinLibrary.AmazonAPI;
+using WinLibrary.DAL;
+using WinLibrary.Model;
+using WinLibrary.Views;
 
 namespace WinLibrary.ViewModel
 {
@@ -10,10 +16,25 @@ namespace WinLibrary.ViewModel
     {
         public RelayCommand GetBookFromAmazonCommand { get; }
         private GoogleApi googleApi;
+        private ICommand _closeWindowCommand;
+        private IView _view;
+
+        private ICommand _saveButtonCommand;
+        public RelayCommand SaveButtonCommand { get; }
+        public RelayCommand<Window> CloseWindowCommand { get; }
+        private BookDal _bookDal;
 
         public SaveBookViewModel()
         {
+        }
+
+        public SaveBookViewModel(IView view)
+        {
+            _view = view;
+            _bookDal = new BookDal();
             googleApi = new GoogleApi();
+            SaveButtonCommand = new RelayCommand(SaveButton, () => true);
+            CloseWindowCommand = new RelayCommand<Window>(CloseWindow, window => true);
             GetBookFromAmazonCommand = new RelayCommand(GetBookFromAmazon, CanGetBookInformation);
         }
 
@@ -142,5 +163,49 @@ namespace WinLibrary.ViewModel
             return result;
         }
 
+        public void Close()
+        {
+            _view.Close();
+        }
+
+        public void CloseWindow(Window window)
+        {
+            //if (window != null)
+            //{
+            //    window.Close();
+            //}
+            //Close();
+        }
+
+        private Book _currentBook;
+        public Book CurrentBook
+        {
+            get => _currentBook;
+            set
+            {
+                _currentBook = value;
+                RaisePropertyChanged(nameof(_currentBook));
+            }
+        }
+
+        private void SaveButton()
+        {
+            CurrentBook = new Book
+            {
+                Author = BookToSaveAuthor,
+                Title = BookToSaveTitle,
+                Editor = BookToSaveEditor,
+                Image = BookToSaveCoverImageUrl,
+                PagesNumber = BookToSavePages,
+                Isbn = Isbn
+            };
+            _bookDal.Update(CurrentBook);
+            Close();
+        }
+    }
+
+    public interface IView
+    {
+        void Close();
     }
 }

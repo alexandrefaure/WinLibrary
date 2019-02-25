@@ -24,37 +24,46 @@ namespace WinLibrary.ViewModel
         //private readonly Entities _dataContext = new Entities();
 
         private ICommand _addBookCommand;
-        private ICommand _closeWindowCommand;
 
 
         private Book _currentBook;
         private ICommand _loadDummyBooksCommand;
         private ICommand _purgeAllBooksCommand;
 
-        private ICommand _saveButtonCommand;
 
         //private ICommand _getBookFromAmazonCommand;
         private ICommand _shutdownAppCommand;
 
         public string ApplicationName = "WinLibrary";
         private GoogleApi googleApi;
-        public ObservableCollection<Book> BooksCollection { get; set; }
+        private ObservableCollection<Book> _booksCollection;
+        private BookDal bookDal;
+
+        public ObservableCollection<Book> BooksCollection
+        {
+            get
+            {
+                return _booksCollection;
+            }
+            set
+            {
+                _booksCollection = value;
+                RaisePropertyChanged(nameof(BooksCollection));
+            }
+        }
 
         public MainViewModel()
         {
-            BooksCollection = new ObservableCollection<Book>();
+            bookDal = new BookDal();
+            BooksCollection = new ObservableCollection<Book>(bookDal.GetBooks());
             googleApi = new GoogleApi();
             AddBookCommand = new RelayCommand(AddBook, () => true);
-            SaveButtonCommand = new RelayCommand(SaveButton, () => true);
-            CloseWindowCommand = new RelayCommand(CloseWindow, () => true);
             PurgeAllBooksCommand = new RelayCommand(PurgeAllDatabase, () => true);
             LoadDummyBooksCommand = new RelayCommand(LoadDummyBooks, () => true);
             ShutdownAppCommand = new RelayCommand(ShutDownApp, () => true);
         }
 
         public RelayCommand AddBookCommand { get; }
-        public RelayCommand SaveButtonCommand { get; }
-        public RelayCommand CloseWindowCommand { get; }
         public RelayCommand PurgeAllBooksCommand { get; }
         public RelayCommand LoadDummyBooksCommand { get; }
         public RelayCommand ShutdownAppCommand { get; }
@@ -74,20 +83,11 @@ namespace WinLibrary.ViewModel
             var saveBookWindow = new SaveBookWindow();
             saveBookWindow.ShowDialog();
 
-            //if (saveBookWindow.IsBookNeedToSave)
-            //{
-            //    var testBook = new Book
-            //    {
-            //        Title = saveBookWindow.BookToSaveTitle,
-            //        Author = saveBookWindow.BookToSaveAuthor,
-            //        Editor = saveBookWindow.BookToSaveEditor,
-            //        //PublishedYear = saveBookWindow.BookToSaveYear,
-            //        //PagesNumber = saveBookWindow.BookToSavePages,
-            //        Isbn = saveBookWindow.IsbnBox.Text,
-            //        //CoverImage = saveBookWindow.BookToSaveCoverImageUrl
-            //    };
-            //    BookService.Add(testBook);
-            //}
+            var saveBookViewModel = saveBookWindow.DataContext as SaveBookViewModel;
+            if (saveBookViewModel != null)
+            {
+                BooksCollection.Add(saveBookViewModel.CurrentBook);
+            }
         }
 
         private void ShutDownApp()
@@ -154,40 +154,19 @@ namespace WinLibrary.ViewModel
             return Get(text);
         }
 
-        //todo refactor CloseWindow et SaveButton + virer les méthodes du xaml.cs dans le viewModel
-        public void CloseWindow()
-        {
-            var saveBookWindow = Application.Current.Windows.OfType<SaveBookWindow>().LastOrDefault(x => x.IsActive);
-            if (saveBookWindow != null)
-            {
-                saveBookWindow.IsBookNeedToSave = false;
-                saveBookWindow.Close();
-            }
-        }
-
-        private void SaveButton()
-        {
-            var saveBookWindow = Application.Current.Windows.OfType<SaveBookWindow>().LastOrDefault(x => x.IsActive);
-            if (saveBookWindow != null)
-            {
-                saveBookWindow.IsBookNeedToSave = true;
-                saveBookWindow.Close();
-            }
-        }
-
         public void Add(Book testBook)
         {
             if (testBook != null)
             {
                 BooksCollection.Add(testBook);
-                BookDal.SaveBook(testBook);
+                bookDal.Update(testBook);
             }
         }
 
         public void DeleteAllBooks()
         {
             BooksCollection.Clear();
-            BookDal.Clear();
+            //bookDal.C();
         }
 
         public void AddRange(List<Book> books)
