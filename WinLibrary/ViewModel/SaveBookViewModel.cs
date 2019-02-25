@@ -22,6 +22,7 @@ namespace WinLibrary.ViewModel
         private ICommand _saveButtonCommand;
         public RelayCommand SaveButtonCommand { get; }
         public RelayCommand<Window> CloseWindowCommand { get; }
+
         private BookDal _bookDal;
 
         public SaveBookViewModel()
