@@ -19,11 +19,11 @@ namespace WinLibrary.DAL
             }
         }
 
-        public void Update(Book currentBook)
+        public void Add(Book currentBook)
         {
             using (var databaseEntities = new Entities())
             {
-                databaseEntities.Books.AddOrUpdate(currentBook);
+                databaseEntities.Books.Add(currentBook);
                 databaseEntities.SaveChanges();
             }
         }

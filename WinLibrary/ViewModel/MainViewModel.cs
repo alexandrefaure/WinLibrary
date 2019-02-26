@@ -159,7 +159,7 @@ namespace WinLibrary.ViewModel
             if (testBook != null)
             {
                 BooksCollection.Add(testBook);
-                bookDal.Update(testBook);
+                bookDal.Add(testBook);
             }
         }
 

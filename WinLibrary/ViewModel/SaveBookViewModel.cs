@@ -200,7 +200,7 @@ namespace WinLibrary.ViewModel
                 PagesNumber = BookToSavePages,
                 Isbn = Isbn
             };
-            _bookDal.Update(CurrentBook);
+            _bookDal.Add(CurrentBook);
             Close();
         }
     }

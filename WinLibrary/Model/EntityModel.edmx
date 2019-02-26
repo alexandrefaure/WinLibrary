@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="integer" Nullable="false" />
+          <Property Name="Id" Type="integer" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Author" Type="nvarchar" MaxLength="2147483647" />
           <Property Name="Editor" Type="nvarchar" MaxLength="2147483647" />
@@ -32,7 +32,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int64" Nullable="false" />
+          <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Author" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
           <Property Name="Editor" Type="String" MaxLength="2147483647" FixedLength="false" Unicode="true" />
