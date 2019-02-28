@@ -2,16 +2,14 @@
                       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                       Title="WinLibrary"
                       DataContext="{StaticResource MainViewModel}"
-                      Height="600"
-                      Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="122*" />
-            <ColumnDefinition Width="269*" />
-        </Grid.ColumnDefinitions>
-        <Menu x:Name="Menu" Height="28" VerticalAlignment="Top" Grid.ColumnSpan="2">
+                      Height="688.5"
+                      Width="800"
+                      ResizeMode="NoResize">
+    <DockPanel>
+        <Menu x:Name="Menu" IsMainMenu="True" DockPanel.Dock="Top" Margin="5 5 0 5">
             <MenuItem Header="_Fichier" FontSize="12">
                 <MenuItem Header="_Quitter" Command="{Binding ShutdownAppCommand}" />
             </MenuItem>
@@ -23,11 +21,28 @@
                 <MenuItem Header="Effacer BDD" Command="{Binding PurgeAllBooksCommand}" />
             </MenuItem>
         </Menu>
-        <DataGrid x:Name="BooksGrid"
-                  ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                  Margin="0,219,0,0" MinHeight="350" VerticalScrollBarVisibility="Auto"
-                  Height="214" AutoGenerateColumns="False" Grid.ColumnSpan="2"
-                  SelectedItem="{Binding Path=CurrentBook, Mode=TwoWay}" VerticalAlignment="Top" HorizontalAlignment="Left" Width="792">
+        <Canvas Name="BookDetail" DockPanel.Dock="Top" Width="772" Height="166" VerticalAlignment="Bottom">
+            <TextBox  x:Name="selectedTitleBox" materialDesign:HintAssist.Hint="Titre" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}"
+                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="10" Width="525" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+            <TextBox x:Name="selectedAuthorBox" materialDesign:HintAssist.Hint="Auteur" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}"
+                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="52" Width="178" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+            <TextBox x:Name="selectedIsbnBox" materialDesign:HintAssist.Hint="ISBN" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}"
+                     Canvas.Left="574" TextWrapping="Wrap" Canvas.Top="52" Width="178" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+            <Border BorderThickness="2" BorderBrush="#FF000000">
+                <Image x:Name="selectedBookImage" Source="{Binding SelectedItem.Image, ElementName=BooksGrid}"
+                       Height="157" Canvas.Left="10" Width="167" Canvas.Top="10" />
+            </Border>
+            <TextBox x:Name="selectedPublishedYearBox" materialDesign:HintAssist.Hint="Année de publication"
+                     Text="{Binding SelectedItem.PublishedYear, ElementName=BooksGrid}" Canvas.Left="425"
+                     TextWrapping="Wrap" Canvas.Top="52" Width="113" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+            <TextBox x:Name="selectedPagesNumberBox" materialDesign:HintAssist.Hint="Nombre de page" Text="{Binding SelectedItem.PagesNumber, ElementName=BooksGrid}"
+                     Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="94" Width="113" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+            <TextBox x:Name="selectedEditorBox" materialDesign:HintAssist.Hint="Editeur" Text="{Binding SelectedItem.Editor, ElementName=BooksGrid}"
+                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="94" Width="178" Style="{StaticResource MaterialDesignFloatingHintTextBox}" IsReadOnly="True"/>
+        </Canvas>
+        <DataGrid x:Name="BooksGrid" DockPanel.Dock="Top"
+                  ItemsSource="{Binding Path=BooksCollection, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" MinHeight="350" VerticalScrollBarVisibility="Auto" AutoGenerateColumns="False" Grid.ColumnSpan="2"
+                  SelectedItem="{Binding Path=CurrentBook, Mode=TwoWay}" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Titre" Binding="{Binding Path=Title}" />
                 <DataGridTextColumn Header="Auteur" Binding="{Binding Path=Author}" />
@@ -37,32 +52,5 @@
                 <DataGridTextColumn Header="ISBN" Binding="{Binding Path=Isbn}" />
             </DataGrid.Columns>
         </DataGrid>
-        <Canvas Name="BookDetail" Margin="0,0,10,370" Grid.ColumnSpan="2" HorizontalAlignment="Right" Width="772" Height="166" VerticalAlignment="Bottom">
-            <TextBox x:Name="selectedTitleBox" Text="{Binding SelectedItem.Title, ElementName=BooksGrid}" Height="22"
-                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="31" Width="525" />
-            <TextBox x:Name="selectedAuthorBox" Text="{Binding SelectedItem.Author, ElementName=BooksGrid}" Height="22"
-                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="80" Width="178" />
-            <TextBox x:Name="selectedIsbnBox" Text="{Binding SelectedItem.Isbn, ElementName=BooksGrid}" Height="22"
-                     Canvas.Left="574" TextWrapping="Wrap" Canvas.Top="80" Width="178" />
-            <TextBlock x:Name="textBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Titre" Canvas.Top="10" />
-            <Border BorderThickness="2" BorderBrush="#FF000000">
-                <Image x:Name="selectedBookImage" Source="{Binding SelectedItem.Image, ElementName=BooksGrid}"
-                       Height="157" Canvas.Left="10" Width="167" Canvas.Top="10" />
-            </Border>
-            <TextBlock x:Name="authorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Auteur" Canvas.Top="59" />
-            <TextBox x:Name="selectedPublishedYearBox"
-                     Text="{Binding SelectedItem.PublishedYear, ElementName=BooksGrid}" Height="22" Canvas.Left="425"
-                     TextWrapping="Wrap" Canvas.Top="80" Width="113" />
-            <TextBlock x:Name="publishedYearTextBlock" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="59"
-                       Text="Année de publication" />
-            <TextBox x:Name="selectedPagesNumberBox" Text="{Binding SelectedItem.PagesNumber, ElementName=BooksGrid}"
-                     Height="22" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="130" Width="113" />
-            <TextBlock x:Name="pagesNumberTextBlock" Canvas.Left="425" TextWrapping="Wrap" Canvas.Top="109"
-                       Text="Nombre de pages" />
-            <TextBox x:Name="selectedEditorBox" Text="{Binding SelectedItem.Editor, ElementName=BooksGrid}" Height="22"
-                     Canvas.Left="227" TextWrapping="Wrap" Canvas.Top="130" Width="178" />
-            <TextBlock x:Name="editorTextBlock" Canvas.Left="227" TextWrapping="Wrap" Text="Editeur" Canvas.Top="109" />
-            <TextBlock x:Name="editorTextBlock_Copy" Canvas.Left="574" TextWrapping="Wrap" Text="ISBN" Canvas.Top="59" RenderTransformOrigin="13.8,-6.062" />
-        </Canvas>
-    </Grid>
+    </DockPanel>
 </Controls:MetroWindow>

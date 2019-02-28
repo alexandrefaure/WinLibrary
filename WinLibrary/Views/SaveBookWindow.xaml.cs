@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using WinLibrary.Interfaces;
 using WinLibrary.ViewModel;
 
 namespace WinLibrary.Views

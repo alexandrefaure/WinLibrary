@@ -1,12 +1,15 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using WinLibrary.AmazonAPI;
 using WinLibrary.DAL;
+using WinLibrary.Interfaces;
 using WinLibrary.Model;
 using WinLibrary.Views;
 
@@ -44,15 +47,14 @@ namespace WinLibrary.ViewModel
             if (Isbn != string.Empty)
             {
                 var book = googleApi.GetBook(Isbn);
-                //canvas.TitleBox.Text = book.Title;
-                //canvas.AuthorBox.Text = book.Author;
-                //canvas.EditorBox.Text = book.Editor;
-                ////canvas.YearBox.Text = book.PublishedYear;
-                //canvas.PagesNumberBox.Text = book.PagesNumber.ToString();
 
-                //var bitmap = ReturnImageFromUrl(book.CoverImage);
-                //canvas.CoverImage.Source = bitmap;
-                //canvas.BookToSaveCoverImageUrl = book.CoverImage;
+                BookToSaveTitle = book?.Title;
+                BookToSaveAuthor = book?.Author;
+                BookToSaveEditor = book?.Editor;
+                BookToSaveYear = book?.PublishedYear;
+                BookToSavePages = book?.PagesNumber;
+                BookToSaveCoverImageUrl = book?.Image;
+                BookToSaveImage = ReturnImageFromUrl(book?.Image);
             }
         }
 
@@ -68,7 +70,7 @@ namespace WinLibrary.ViewModel
             set
             {
                 _isbn = value;
-                RaisePropertyChanged(nameof(_isbn));
+                RaisePropertyChanged(nameof(Isbn));
             }
         }
 
@@ -79,7 +81,7 @@ namespace WinLibrary.ViewModel
             set
             {
                 _bookToSaveTitle = value;
-                RaisePropertyChanged(nameof(_bookToSaveTitle));
+                RaisePropertyChanged(nameof(BookToSaveTitle));
             }
         }
 
@@ -90,7 +92,7 @@ namespace WinLibrary.ViewModel
             set
             {
                 _bookToSaveAuthor = value;
-                RaisePropertyChanged(nameof(_bookToSaveAuthor));
+                RaisePropertyChanged(nameof(BookToSaveAuthor));
             }
         }
 
@@ -101,7 +103,7 @@ namespace WinLibrary.ViewModel
             set
             {
                 _bookToSaveEditor = value;
-                RaisePropertyChanged(nameof(_bookToSaveEditor));
+                RaisePropertyChanged(nameof(BookToSaveEditor));
             }
         }
 
@@ -112,18 +114,18 @@ namespace WinLibrary.ViewModel
             set
             {
                 _bookToSaveYear = value;
-                RaisePropertyChanged(nameof(_bookToSaveYear));
+                RaisePropertyChanged(nameof(BookToSaveYear));
             }
         }
 
-        private int _bookToSavePages;
-        public int BookToSavePages
+        private long? _bookToSavePages;
+        public long? BookToSavePages
         {
             get { return _bookToSavePages; }
             set
             {
                 _bookToSavePages = value;
-                RaisePropertyChanged(nameof(_bookToSavePages));
+                RaisePropertyChanged(nameof(BookToSavePages));
             }
         }
 
@@ -134,7 +136,7 @@ namespace WinLibrary.ViewModel
             set
             {
                 _coverImage = value;
-                RaisePropertyChanged(nameof(_coverImage));
+                RaisePropertyChanged(nameof(CoverImage));
             }
         }
 
@@ -145,7 +147,18 @@ namespace WinLibrary.ViewModel
             set
             {
                 _bookToSaveCoverImageUrl = value;
-                RaisePropertyChanged(nameof(_bookToSaveCoverImageUrl));
+                RaisePropertyChanged(nameof(BookToSaveCoverImageUrl));
+            }
+        }
+
+        private BitmapImage _bookToSaveImage;
+        public BitmapImage BookToSaveImage
+        {
+            get { return _bookToSaveImage; }
+            set
+            {
+                _bookToSaveImage = value;
+                RaisePropertyChanged(nameof(BookToSaveImage));
             }
         }
 
@@ -203,10 +216,20 @@ namespace WinLibrary.ViewModel
             _bookDal.Add(CurrentBook);
             Close();
         }
-    }
 
-    public interface IView
-    {
-        void Close();
+        internal static BitmapImage ReturnImageFromUrl(string url)
+        {
+            BitmapImage bitmap = null;
+            if (!string.IsNullOrEmpty(url))
+            {
+                var fullFilePath = url;
+                bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
+                bitmap.EndInit();
+            }
+
+            return bitmap;
+        }
     }
 }

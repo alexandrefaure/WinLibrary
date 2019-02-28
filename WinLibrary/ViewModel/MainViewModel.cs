@@ -134,21 +134,6 @@ namespace WinLibrary.ViewModel
             }
         }
 
-        internal static BitmapImage ReturnImageFromUrl(string url)
-        {
-            BitmapImage bitmap = null;
-            if (!string.IsNullOrEmpty(url))
-            {
-                var fullFilePath = url;
-                bitmap = new BitmapImage();
-                bitmap.BeginInit();
-                bitmap.UriSource = new Uri(fullFilePath, UriKind.Absolute);
-                bitmap.EndInit();
-            }
-
-            return bitmap;
-        }
-
         public Book GetBook(string text)
         {
             return Get(text);
