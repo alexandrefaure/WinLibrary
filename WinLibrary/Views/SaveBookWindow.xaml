@@ -1,40 +1,42 @@
 ﻿<Controls:MetroWindow x:Class="WinLibrary.Views.SaveBookWindow"
-                          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                          xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-                          x:Name="AddWindow"
-                          DataContext="{StaticResource SaveBookViewModel}"
-                          Title="Ajouter un livre"
-                          Height="391.5"
-                          Width="834.5"
-                          ResizeMode="NoResize">
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+                      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                      x:Name="AddWindow"
+                      DataContext="{StaticResource SaveBookViewModel}"
+                      Title="Ajouter un livre"
+                      Height="486.5"
+                      Width="696.5"
+                      ResizeMode="NoResize">
 
-    <Canvas Name="MainCanvas" Margin="0,10,0,2" HorizontalAlignment="Left" Width="824">
-        <!--<TextBox x:Name="TitleBox"  Text="{Binding BookToSaveTitle}" GotFocus="TitleBox_OnGotFocus" LostFocus="TitleBox_OnLostFocus" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="543" Canvas.Left="237" Canvas.Top="119"/>
-        <TextBox x:Name="AuthorBox" Text="{Binding BookToSaveAuthor}" GotFocus="AuthorBox_OnGotFocus" LostFocus="AuthorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="238" Canvas.Top="181"/>
-        <TextBox x:Name="EditorBox" Text="{Binding BookToSaveEditor}" GotFocus="EditorBox_OnGotFocus" LostFocus="EditorBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="238" Canvas.Top="244"/>
-        <TextBox x:Name="YearBox"  Text="{Binding BookToSaveYear}" GotFocus="YearBox_OnGotFocus" LostFocus="YearBox_OnLostFocus" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="639" Canvas.Top="181"/>
-        <TextBox x:Name="PagesNumberBox"  Text="{Binding BookToSavePages}" GotFocus="PagesNumberBox_OnGotFocus" LostFocus="PagesNumberBox_OnLostFocus" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="504" Canvas.Top="181"/>
-        <TextBox x:Name="IsbnBox"  Text="{Binding Isbn}" GotFocus="IsbnBox_OnGotFocus" LostFocus="IsbnBox_OnLostFocus" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Center"  Width="138" Canvas.Left="268" Canvas.Top="37"/>-->
-        <TextBox x:Name="TitleBox"  Text="{Binding BookToSaveTitle}" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="543" Canvas.Left="237" Canvas.Top="119"/>
-        <TextBox x:Name="AuthorBox" Text="{Binding BookToSaveAuthor}" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="238" Canvas.Top="181"/>
-        <TextBox x:Name="EditorBox" Text="{Binding BookToSaveEditor}" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="238" Canvas.Top="244"/>
-        <TextBox x:Name="YearBox"  Text="{Binding BookToSaveYear}" HorizontalAlignment="Left" Height="17" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="639" Canvas.Top="181"/>
-        <TextBox x:Name="PagesNumberBox"  Text="{Binding BookToSavePages}" HorizontalAlignment="Left" Height="16" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="504" Canvas.Top="181"/>
-        <TextBox x:Name="IsbnBox"  Text="{Binding Isbn}" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" VerticalAlignment="Center"  Width="138" Canvas.Left="268" Canvas.Top="37"/>
+    <Canvas Name="MainCanvas" Margin="0,0,0,4" HorizontalAlignment="Left" Width="686">
+        <TextBox x:Name="TitleBox" materialDesign:HintAssist.Hint="Titre" Text="{Binding BookToSaveTitle}" HorizontalAlignment="Left"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="439" Canvas.Left="237" Canvas.Top="96" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <TextBox x:Name="AuthorBox" materialDesign:HintAssist.Hint="Auteur" Text="{Binding BookToSaveAuthor}" HorizontalAlignment="Left"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="238" Canvas.Top="138" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <TextBox x:Name="EditorBox" materialDesign:HintAssist.Hint="Editeur" Text="{Binding BookToSaveEditor}" HorizontalAlignment="Left"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="245" Canvas.Left="238" Canvas.Top="180" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <TextBox x:Name="YearBox" materialDesign:HintAssist.Hint="Année" Text="{Binding BookToSaveYear}" HorizontalAlignment="Left"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="238" Canvas.Top="222" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <TextBox x:Name="PagesNumberBox" materialDesign:HintAssist.Hint="Nombre de pages" Text="{Binding BookToSavePages}" HorizontalAlignment="Left"
+                 TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Canvas.Left="236" Canvas.Top="264" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
+        <TextBox x:Name="IsbnBox" materialDesign:HintAssist.Hint="ISBN" Text="{Binding Isbn}" HorizontalAlignment="Left" TextWrapping="Wrap"
+                 VerticalAlignment="Center" Width="540" Canvas.Left="10" Canvas.Top="29" Style="{StaticResource MaterialDesignFloatingHintTextBox}" />
 
-
-        <Button x:Name="SaveButton" Content="Enregistrer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Command="{Binding SaveButtonCommand}" Canvas.Left="568" Canvas.Top="312" Height="28"/>
-        <Button x:Name="CloseButton" Content="Fermer" HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=AddWindow}" Canvas.Left="700" Canvas.Top="312" Height="28"/>
-        <Button x:Name="GetBookFromAmazonButton" Content="Rechercher" HorizontalAlignment="Left" VerticalAlignment="Center"  Width="121" Command="{Binding GetBookFromAmazonCommand}" CommandParameter="{Binding ElementName=SaveBookWindowName}" Canvas.Left="436" Canvas.Top="37" Height="20"/>
-        <TextBlock x:Name="MainTextBlock" Canvas.Left="171" TextWrapping="Wrap" Canvas.Top="10" FontSize="16"><Run Text="Saisissez l'ISBN du livre à ajouter puis"/><Run Text=" cliquez sur "/><Run Text="R"/><Run Text="echercher"/></TextBlock>
-        <TextBlock x:Name="TitleTextBlock" Text="Titre" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="96"/>
-        <TextBlock x:Name="AuthorTextBlock" Text="Auteur" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="156"/>
-        <TextBlock x:Name="EditorTextBlock" Canvas.Left="238" TextWrapping="Wrap" Canvas.Top="220" Width="44" Height="19"><Run Text="Editeur"/><LineBreak/><Run/></TextBlock>
-        <TextBlock x:Name="YearTextBlock" Canvas.Left="639" TextWrapping="Wrap" Canvas.Top="150" Width="117" Height="19"><Run Text="Année de publication"/><LineBreak/><Run/></TextBlock>
-        <TextBlock x:Name="PagesNumberTextBlock" Canvas.Left="504" TextWrapping="Wrap" Canvas.Top="150" Width="117" Height="19"><Run Text="Nombre de pages"/><LineBreak/><Run/></TextBlock>
+        <Button x:Name="SaveButton" Content="Enregistrer" Style="{StaticResource MaterialDesignRaisedDarkButton}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Width="116" Command="{Binding SaveButtonCommand}"
+                Canvas.Left="237" Canvas.Top="411" />
+        <Button x:Name="CloseButton" Content="Fermer" Style="{StaticResource MaterialDesignRaisedButton}"
+                HorizontalAlignment="Left" VerticalAlignment="Top" Width="114" Command="{Binding CloseWindowCommand}"
+                CommandParameter="{Binding ElementName=AddWindow}" Canvas.Left="369" Canvas.Top="411" />
+        <Button x:Name="GetBookFromAmazonButton" Content="Rechercher"
+                Style="{StaticResource MaterialDesignRaisedLightButton}" HorizontalAlignment="Left"
+                VerticalAlignment="Center" Width="121" Command="{Binding GetBookFromAmazonCommand}"
+                CommandParameter="{Binding ElementName=SaveBookWindowName}" Canvas.Left="555" Canvas.Top="37" />
         <Border BorderThickness="2" BorderBrush="#FF000000" Canvas.Top="96" Canvas.Left="10">
-            <Image x:Name="bookPreviumImage" Source="{Binding BookToSaveImage}" Height="240" Canvas.Left="10" Width="186" Canvas.Top="95"/>
+            <Image x:Name="bookPreviumImage" Source="{Binding BookToSaveImage}" Height="240" Canvas.Left="10"
+                   Width="186" Canvas.Top="95" />
         </Border>
     </Canvas>
 </Controls:MetroWindow>
