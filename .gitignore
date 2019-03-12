@@ -194,5 +194,5 @@ $RECYCLE.BIN/
 *.db
 WinLibrary/AmazonAPI/AmazonApiCredentials.cs
 
-#ignore keys.config file
-keys.config
+#ignore secret files
+*.secret
